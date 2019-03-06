@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
-import react_logo from './react-logo.svg';
-import firebase_logo from './firebase-logo.png'
-import './App.css';
+import react_logo from './assets/react-logo.svg';
+import firebase_logo from './assets/firebase-logo.png'
+import './styles/App.css';
 import Firebase from './config/firebaseConfig.js'
 
 
@@ -54,7 +54,7 @@ class App extends Component {
 	}
 
 	getPost = () => {
-		// A post entry.
+		// Posts branch of tree
 		var ref = this.firebase.db.ref().child('posts')
 
 		// Attach an asynchronous callback to read the data at our posts reference
@@ -82,7 +82,6 @@ class App extends Component {
 								Firebase Post
               				</div>
 						</div>
-
 						<div id="get-button" onClick={this.getPost}>
 							<div className="button-text">
 								Firebase Get

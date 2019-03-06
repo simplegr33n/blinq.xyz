@@ -50,6 +50,7 @@
   padding: 4px;
   font-weight: bold;
   color: rgb(3, 61, 78);
+  margin: 2px;
 }
 
 #get-button {
@@ -57,6 +58,7 @@
   padding: 4px;
   font-weight: bold;
   color: rgb(3, 61, 78);
+  margin: 2px;
 }
 
 .button-text {
