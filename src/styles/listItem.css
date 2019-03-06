@@ -1,0 +1,15 @@
+.ListItem {
+    margin: 2px;
+    padding: 4px;
+    background-color: rgb(41, 41, 92);
+    color: rgb(215, 223, 188);
+}
+
+.submitterName {
+    color: rgb(226, 219, 111);
+    text-align: right;
+}
+
+.submission {
+    text-align: left;
+}

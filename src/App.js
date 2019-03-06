@@ -1,8 +1,10 @@
 import React, { Component } from 'react';
-import react_logo from './assets/react-logo.svg';
-import firebase_logo from './assets/firebase-logo.png'
 import './styles/App.css';
 import Firebase from './config/firebaseConfig.js'
+
+import ListItem from './components/listItem.js'
+import react_logo from './assets/react-logo.svg';
+import firebase_logo from './assets/firebase-logo.png'
 
 
 class App extends Component {
@@ -10,13 +12,12 @@ class App extends Component {
 	constructor(props) {
 		super(props);
 		this.state = {
-			submission: ''
+			submission: '',
+			posts: []
 		};
 
-		this.handleChange = this.handleChange.bind(this)
-		this.handleSubmit = this.handleSubmit.bind(this)
-
 		this.firebase = new Firebase()
+		this.getPosts()
 	}
 
 	handleChange = (event) => {
@@ -32,6 +33,10 @@ class App extends Component {
 	}
 
 	postToFirebase(uid, username, picture, title, body) {
+		if (body === null || body.replace(/\s+/g, '') === "") {
+			return;
+		}
+
 		// A post entry.
 		var postData = {
 			author: username,
@@ -53,23 +58,28 @@ class App extends Component {
 		return this.firebase.db.ref().update(updates);
 	}
 
-	getPost = () => {
+	getPosts = () => {
 		// Posts branch of tree
 		var ref = this.firebase.db.ref().child('posts')
 
-		// Attach an asynchronous callback to read the data at our posts reference
-		ref.on("value", function(snapshot) {
-		  console.log(snapshot.val());
-		}, function (errorObject) {
-		  console.log("The read failed: " + errorObject.code);
+		ref.on('child_added', snapshot => {
+			const previousPosts = this.state.posts;
+			previousPosts.push({
+				name: snapshot.val().name,
+				body: snapshot.val().body
+			});
+			this.setState({
+				posts: previousPosts
+			});
 		});
-
 	}
 
 	render() {
 		return (
 			<div className="App">
-				<header className="App-header">
+				<header className="App-body">
+
+				<div id="App-left">
 					<div>
 						<img src={react_logo} className="React-logo" alt="react-logo" />
 						<img src={firebase_logo} className="Firebase-logo" alt="firebase-logo" />
@@ -82,12 +92,17 @@ class App extends Component {
 								Firebase Post
               				</div>
 						</div>
-						<div id="get-button" onClick={this.getPost}>
+						<div id="get-button" onClick={this.getPosts}>
 							<div className="button-text">
 								Firebase Get
               				</div>
 						</div>
 					</div>
+					</div>
+					<div id="App-right">
+						{this.state.posts.map((item) => (<ListItem submission={item} />))}	
+					</div>
+
 				</header>
 			</div>
 		);

@@ -14,11 +14,11 @@
   pointer-events: none;
 }
 
-.App-header {
+.App-body {
   background-color: #282c34;
   min-height: 100vh;
   display: flex;
-  flex-direction: column;
+  flex-direction: row;
   align-items: center;
   justify-content: center;
   font-size: calc(10px + 2vmin);
@@ -41,8 +41,8 @@
 
 /* My CSS starts here */
 #submit-text-area {
- width: 600px;
- height: 280px;
+ width: 400px;
+ height: 240px;
 }
 
 #post-button {
@@ -54,13 +54,25 @@
 }
 
 #get-button {
-  background-color: rgb(52, 98, 223);
+  background-color: rgb(3, 61, 78);
   padding: 4px;
   font-weight: bold;
-  color: rgb(3, 61, 78);
+  color: rgb(223, 197, 52);
   margin: 2px;
 }
 
 .button-text {
   user-select: none;
 }
+
+#App-left {
+  flex-direction: column;
+ }
+
+#App-right {
+  width: 400px;
+  height: 515px;
+  background-color: #dfbf32;
+  flex-direction: column;
+  overflow-y: scroll;
+ }
