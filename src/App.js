@@ -53,6 +53,19 @@ class App extends Component {
 		return this.firebase.db.ref().update(updates);
 	}
 
+	getPost = () => {
+		// A post entry.
+		var ref = this.firebase.db.ref().child('posts')
+
+		// Attach an asynchronous callback to read the data at our posts reference
+		ref.on("value", function(snapshot) {
+		  console.log(snapshot.val());
+		}, function (errorObject) {
+		  console.log("The read failed: " + errorObject.code);
+		});
+
+	}
+
 	render() {
 		return (
 			<div className="App">
@@ -65,9 +78,15 @@ class App extends Component {
 					<div>
 						<textarea id="submit-text-area" value={this.state.submission} onChange={this.handleChange} />
 						<div id="post-button" onClick={this.handleSubmit}>
-							<div id="post-button-text">
+							<div className="button-text">
 								Firebase Post
-              		</div>
+              				</div>
+						</div>
+
+						<div id="get-button" onClick={this.getPost}>
+							<div className="button-text">
+								Firebase Get
+              				</div>
 						</div>
 					</div>
 				</header>

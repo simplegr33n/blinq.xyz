@@ -52,6 +52,13 @@
   color: rgb(3, 61, 78);
 }
 
-#post-button-text {
+#get-button {
+  background-color: rgb(52, 98, 223);
+  padding: 4px;
+  font-weight: bold;
+  color: rgb(3, 61, 78);
+}
+
+.button-text {
   user-select: none;
 }
