@@ -25,6 +25,69 @@
   color: white;
 }
 
+#App-Header {
+  position: fixed;
+  overflow: hidden;
+  height: 10vh;
+  width: inherit;
+  background-color: #3864bd;
+  display: flex;
+  justify-content: flex-end;
+  align-items: center;
+}
+
+#Header-Btns {
+  margin-right: 24px;
+}
+
+#Home-Div {
+  height: 10vh;
+  background-color: #274683;
+  line-height: 10vh;
+  font-size: 31px;
+  font-weight: bolder;
+}
+
+#App-Body-Content {
+  background-color: #2b6630;
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  margin-top: 10vh;
+  margin-left: 240px;
+  padding: 10px;
+}
+
+#App-Inner-Body {
+  width: 100vw;
+}
+
+#Main-Left-Menu {
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+  width: 240px;
+  position: fixed;
+  z-index: 1;
+  /* Stay on top */
+  top: 0;
+  /* Stay at the top */
+  left: 0;
+  background-color: rgb(31, 30, 30);
+  overflow-x: hidden;
+  /* Disable horizontal scroll */
+}
+
+.Left-Menu-Btn {
+  font-size: 18px;
+  font-weight: bold;
+}
+
+#Main-Content {
+  display: flex;
+  flex-direction: column;
+}
+
 .App-link {
   color: #61dafb;
 }
@@ -38,11 +101,11 @@
   }
 }
 
-
 /* My CSS starts here */
+
 #submit-text-area {
- width: 400px;
- height: 240px;
+  width: 400px;
+  height: 240px;
 }
 
 #post-button {
@@ -67,7 +130,7 @@
 
 #App-left {
   flex-direction: column;
- }
+}
 
 #App-right {
   width: 400px;
@@ -75,4 +138,4 @@
   background-color: #dfbf32;
   flex-direction: column;
   overflow-y: scroll;
- }
+}

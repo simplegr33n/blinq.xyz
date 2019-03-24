@@ -79,29 +79,55 @@ class App extends Component {
 			<div className="App">
 				<header className="App-body">
 
-				<div id="App-left">
-					<div>
-						<img src={react_logo} className="React-logo" alt="react-logo" />
-						<img src={firebase_logo} className="Firebase-logo" alt="firebase-logo" />
-					</div>
-					<p>Post something to Firebase:</p>
-					<div>
-						<textarea id="submit-text-area" value={this.state.submission} onChange={this.handleChange} />
-						<div id="post-button" onClick={this.handleSubmit}>
-							<div className="button-text">
-								Firebase Post
-              				</div>
+					<div id="App-Inner-Body">
+
+						<div id="App-Header">
+							<div id="Header-Btns">
+								<button>Profile</button>
+								<button>Logout</button>
+							</div>
 						</div>
-						<div id="get-button" onClick={this.getPosts}>
-							<div className="button-text">
-								Firebase Get
-              				</div>
+						<div id="App-Body-Content">
+							<div id="Main-Left-Menu">
+								<div id="Home-Div">
+									Tunlinq
+								</div>
+								<button className="Left-Menu-Btn">Button</button>
+								<button className="Left-Menu-Btn">Button</button>
+								<button className="Left-Menu-Btn">Button</button>
+								<button className="Left-Menu-Btn">Button</button>
+							</div>
+							<div id="Main-Content">
+								<div id="App-left">
+									<div>
+										<img src={react_logo} className="React-logo" alt="react-logo" />
+										<img src={firebase_logo} className="Firebase-logo" alt="firebase-logo" />
+									</div>
+									<p>Post something to Firebase:</p>
+									<div>
+										<textarea id="submit-text-area" value={this.state.submission} onChange={this.handleChange} />
+										<div id="post-button" onClick={this.handleSubmit}>
+											<div className="button-text">
+												Firebase Post
+              							</div>
+										</div>
+										<div id="get-button" onClick={this.getPosts}>
+											<div className="button-text">
+												Firebase Get
+              							</div>
+										</div>
+									</div>
+								</div>
+								<div id="App-right">
+									{this.state.posts.map((item) => (<ListItem submission={item} />))}
+								</div>
+							</div>
 						</div>
 					</div>
-					</div>
-					<div id="App-right">
-						{this.state.posts.map((item) => (<ListItem submission={item} />))}	
-					</div>
+
+
+
+
 
 				</header>
 			</div>
