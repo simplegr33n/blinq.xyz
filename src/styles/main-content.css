@@ -1,0 +1,45 @@
+/* Post Song */
+#submit-song-box {
+    width: 60vw;
+    background: #474147;
+    padding: 16px;
+}
+
+#song-name-area {
+    width: 60%;
+    height: 30px;
+}
+
+#group-name-area {
+    width: 60%;
+    height: 30px;
+}
+
+#artist-names-area {
+    width: 60%;
+    height: 30px;
+}
+
+#song-info-area {
+    width: 80%;
+    height: 60px;
+}
+
+#post-button {
+    background-color: rgb(3, 61, 78);
+    padding: 4px;
+    font-weight: bold;
+    color: rgb(223, 197, 52);
+    margin: 2px;
+    user-select: none;
+}
+
+
+/* SongWall */
+#App-right {
+    width: 400px;
+    height: 515px;
+    background-color: #dfbf32;
+    flex-direction: column;
+    overflow-y: scroll;
+}

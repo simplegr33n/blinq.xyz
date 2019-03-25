@@ -28,6 +28,7 @@
 #App-Header {
   position: fixed;
   overflow: hidden;
+  top: 0;
   height: 10vh;
   width: inherit;
   background-color: #3864bd;
@@ -54,6 +55,7 @@
   flex-direction: row;
   justify-content: center;
   margin-top: 10vh;
+  min-height: 88vh;
   margin-left: 240px;
   padding: 10px;
 }
@@ -81,6 +83,7 @@
 .Left-Menu-Btn {
   font-size: 18px;
   font-weight: bold;
+  height: 10vh;
 }
 
 #Main-Content {
@@ -99,43 +102,4 @@
   to {
     transform: rotate(360deg);
   }
-}
-
-/* My CSS starts here */
-
-#submit-text-area {
-  width: 400px;
-  height: 240px;
-}
-
-#post-button {
-  background-color: rgb(223, 197, 52);
-  padding: 4px;
-  font-weight: bold;
-  color: rgb(3, 61, 78);
-  margin: 2px;
-}
-
-#get-button {
-  background-color: rgb(3, 61, 78);
-  padding: 4px;
-  font-weight: bold;
-  color: rgb(223, 197, 52);
-  margin: 2px;
-}
-
-.button-text {
-  user-select: none;
-}
-
-#App-left {
-  flex-direction: column;
-}
-
-#App-right {
-  width: 400px;
-  height: 515px;
-  background-color: #dfbf32;
-  flex-direction: column;
-  overflow-y: scroll;
 }

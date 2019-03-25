@@ -15,7 +15,9 @@ var config = {
 
 class Firebase {
     constructor() {
-        firebase.initializeApp(config);
+        if (!firebase.apps.length) {
+            firebase.initializeApp(config);
+        }
 
         this.db = firebase.database()
     }

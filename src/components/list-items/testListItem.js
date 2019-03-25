@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import '../styles/listItem.css';
+import '../../styles/listItem.css';
 
 class ListItem extends Component {
 
