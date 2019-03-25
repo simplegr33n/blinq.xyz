@@ -1,7 +1,6 @@
 /* Post Song */
 #submit-song-box {
-    width: 60vw;
-    background: #474147;
+    background: #282c34;
     padding: 16px;
 }
 
@@ -39,7 +38,7 @@
 #Songs-List {
     width: inherit;
     max-height: 70vh;
-    background-color: #dfbf32;
+    background-color: #cac9c5;
     flex-direction: column;
     overflow-y: scroll;
 }

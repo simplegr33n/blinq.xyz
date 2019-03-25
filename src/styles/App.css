@@ -2,20 +2,17 @@
   text-align: center;
 }
 
-.React-logo {
-  animation: App-logo-spin infinite 20s linear;
-  height: 5vmin;
+.Muslinq-logo {
   pointer-events: none;
-}
-
-.Firebase-logo {
-  animation: App-logo-spin infinite 20s linear;
-  height: 5vmin;
-  pointer-events: none;
+  width: auto;
+  height: 100%;
+  background-size: cover;
+  background-repeat: no-repeat;
+  background-position: center;
 }
 
 .App-body {
-  background-color: #282c34;
+  background-color: #cccccc;
   min-height: 100vh;
   display: flex;
   flex-direction: row;
@@ -27,9 +24,9 @@
   position: fixed;
   overflow: hidden;
   top: 0;
-  height: 10vh;
+  height: 133px;
   width: inherit;
-  background-color: #3864bd;
+  background-color:rgb(31, 30, 30);
   display: flex;
   justify-content: flex-end;
   align-items: center;
@@ -40,11 +37,8 @@
 }
 
 #Home-Div {
-  height: 10vh;
-  background-color: #274683;
-  line-height: 10vh;
-  font-size: 31px;
-  font-weight: bolder;
+  background-color: #e6e8ec;
+  height: 133px;
 }
 
 #App-Body-Content {
@@ -52,7 +46,7 @@
   flex-direction: row;
   margin-left: 240px;
   padding: 10px;
-  margin-top: 10vh;
+  margin-top: 133px;
 }
 
 #App-Inner-Body {
@@ -73,9 +67,20 @@
 }
 
 .Left-Menu-Btn {
+  background: #4e5461;
   font-size: 18px;
   font-weight: bold;
-  height: 10vh;
+  border: none;
+  height: 67px;
+  margin-bottom: 2px;
+}
+
+.Left-Menu-Btn:hover {
+  background: #496870;
+}
+
+.Left-Menu-Btn:active {
+  background: #8a93ad;
 }
 
 #Main-Content {
@@ -86,13 +91,4 @@
 
 .App-link {
   color: #61dafb;
-}
-
-@keyframes App-logo-spin {
-  from {
-    transform: rotate(0deg);
-  }
-  to {
-    transform: rotate(360deg);
-  }
 }

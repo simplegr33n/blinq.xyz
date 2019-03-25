@@ -5,9 +5,7 @@ import './styles/App.css';
 import PostSong from './components/main-content/PostSong.js'
 import SongWall from './components/main-content/SongWall.js'
 
-
-import react_logo from './assets/react-logo.svg';
-import firebase_logo from './assets/firebase-logo.png'
+import logo from './assets/logo.png'
 
 
 class App extends Component {
@@ -67,9 +65,7 @@ class App extends Component {
 						<div id="App-Body-Content">
 							<div id="Main-Left-Menu">
 								<div id="Home-Div">
-									Tunlinq
-									<img src={react_logo} className="React-logo" alt="react-logo" />
-									<img src={firebase_logo} className="Firebase-logo" alt="firebase-logo" />
+									<img src={logo} className="Muslinq-logo" alt="muslinq-logo" />
 								</div>
 								<button className="Left-Menu-Btn" onClick={this.openSongWall}>Song Wall</button>
 								<button className="Left-Menu-Btn" onClick={this.openPostSong}>Post Song</button>
