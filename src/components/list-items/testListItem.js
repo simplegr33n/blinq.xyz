@@ -14,10 +14,10 @@ class ListItem extends Component {
         return (
             <div className="ListItem">
                 <div className="submitterName">
-                    {this.props.submission.name}
+                    {this.props.submission.songName}
                 </div>
                 <div className="submission">
-                    {this.props.submission.body}
+                    {this.props.submission.group}
                 </div>
             </div>
         );

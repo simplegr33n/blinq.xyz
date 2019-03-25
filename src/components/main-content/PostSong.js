@@ -50,7 +50,7 @@ class PostSong extends Component {
 
         // A post entry.
         var postData = {
-            name: songname,
+            songName: songname,
             group: group,
             artists: artists,
             info: info,
@@ -73,7 +73,6 @@ class PostSong extends Component {
 
     render() {
         return (
-            <div>
                 <div id="submit-song-box">
                     <div>
                         Song Name:
@@ -95,7 +94,6 @@ class PostSong extends Component {
                         Firebase Post
                     </div>
                 </div>
-            </div>
         );
     }
 }

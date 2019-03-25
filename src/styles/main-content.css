@@ -36,9 +36,9 @@
 
 
 /* SongWall */
-#App-right {
-    width: 400px;
-    height: 515px;
+#Songs-List {
+    width: inherit;
+    max-height: 70vh;
     background-color: #dfbf32;
     flex-direction: column;
     overflow-y: scroll;

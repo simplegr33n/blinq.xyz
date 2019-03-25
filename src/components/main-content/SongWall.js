@@ -6,46 +6,39 @@ import ListItem from '../list-items/testListItem.js'
 
 class SongWall extends Component {
 
-    constructor(props) {
-        super(props);
-        this.state = {
-			submission: '',
-			posts: []
+	constructor(props) {
+		super(props);
+		this.state = {
+			songs: []
 		};
 
-        this.firebase = new Firebase()
-		this.getPosts()
-    }
-
-    handleChange = (event) => {
-		this.setState({ submission: event.target.value });
+		this.firebase = new Firebase()
+		this.getSongs()
 	}
 
-	getPosts = () => {
+	getSongs = () => {
 		// Posts branch of tree
-		var ref = this.firebase.db.ref().child('posts')
+		var ref = this.firebase.db.ref().child('songs')
 
 		ref.on('child_added', snapshot => {
-			const previousPosts = this.state.posts;
-			previousPosts.push({
-				name: snapshot.val().name,
-				body: snapshot.val().body
+			const previousSongs = this.state.songs;
+			previousSongs.push({
+				songName: snapshot.val().songName,
+				group: snapshot.val().group
 			});
 			this.setState({
-				posts: previousPosts
+				songs: previousSongs
 			});
 		});
 	}
 
-    render() {
-        return (
-            <div>
-                <div id="App-right">
-                    {this.state.posts.map((item) => (<ListItem submission={item} />))}
-                </div>
-            </div>
-        );
-    }
+	render() {
+		return (
+			<div id="Songs-List">
+				{this.state.songs.map((item) => (<ListItem submission={item} />))}
+			</div>
+		);
+	}
 }
 
 export default SongWall;
