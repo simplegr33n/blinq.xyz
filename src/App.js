@@ -13,7 +13,7 @@ class App extends Component {
 	constructor(props) {
 		super(props);
 		this.state = {
-			mainContent: 'postsong' // postsong, songwall, mysongs, record, etc.
+			mainContent: 'songwall' // postsong, songwall, mysongs, record, etc.
 		};
 
 		// this.firebase = new Firebase()
@@ -68,8 +68,8 @@ class App extends Component {
 									<img src={logo} className="Muslinq-logo" alt="muslinq-logo" />
 								</div>
 								<button className="Left-Menu-Btn" onClick={this.openSongWall}>Song Wall</button>
-								<button className="Left-Menu-Btn" onClick={this.openPostSong}>Post Song</button>
 								<button className="Left-Menu-Btn" onClick={this.openMySongs}>My Songs</button>
+								<button className="Left-Menu-Btn" onClick={this.openPostSong}>Post Song</button>
 							</div>
 							<div id="Main-Content">
 								{(() => {

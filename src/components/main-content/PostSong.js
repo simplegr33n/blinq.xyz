@@ -9,8 +9,7 @@ class PostSong extends Component {
         super(props);
         this.state = {
             songName: '',
-            groupName: '',
-            artistNames: '',
+            artistName: '',
             songInfo: ''
         };
 
@@ -21,12 +20,8 @@ class PostSong extends Component {
         this.setState({ songName: event.target.value });
     }
 
-    handleGroupNameChange = (event) => {
-        this.setState({ groupName: event.target.value });
-    }
-
-    handleArtistNamesChange = (event) => {
-        this.setState({ artistNames: event.target.value });
+    handleArtistNameChange = (event) => {
+        this.setState({ artistName: event.target.value });
     }
 
     handleSongInfoChange = (event) => {
@@ -34,25 +29,27 @@ class PostSong extends Component {
     }
 
     handleSubmit = () => {
-        console.log("submitPressed: " + this.state.songName)
+        if (this.state.songName === '' || this.state.artistName === '' || this.state.songInfo === '') {
+            console.log("Missing information for song submit...")
+            return;
+        }
+        console.log(`submitPressed: ${this.state.artistName} - ${this.state.songName}: ${this.state.songInfo}`)
         this.setState({ songName: '' });
-        this.setState({ groupName: '' });
-        this.setState({ artistNames: '' });
+        this.setState({ artistName: '' });
         this.setState({ songInfo: '' });
 
         // Send to Firebase
-        this.postToFirebase(777, "yarl", this.state.groupName, this.state.songName, this.state.artistNames, this.state.songInfo)
+        this.postToFirebase(777, "yarl", this.state.songName, this.state.artistName, this.state.songInfo)
     }
 
-    postToFirebase(uid, username, group, songname, artists, info) {
+    postToFirebase(uid, username, songname, artist, info) {
         let date = new Date()
         let timestamp = date.getTime()
 
         // A post entry.
         var postData = {
             songName: songname,
-            group: group,
-            artists: artists,
+            artist: artist,
             info: info,
             recorded: timestamp,
             uploaded: timestamp,
@@ -79,12 +76,8 @@ class PostSong extends Component {
                         <textarea id="song-name-area" value={this.state.songName} onChange={this.handleSongNameChange} />
                     </div>
                     <div>
-                        Group Name:
-                        <textarea id="group-name-area" value={this.state.groupName} onChange={this.handleGroupNameChange} />
-                    </div>
-                    <div>
-                        Artists:
-                        <textarea id="artist-names-area" value={this.state.artistNames} onChange={this.handleArtistNamesChange} />
+                        Artist:
+                        <textarea id="artist-names-area" value={this.state.artistName} onChange={this.handleArtistNameChange} />
                     </div>
                     <div>
                         Additional Info:

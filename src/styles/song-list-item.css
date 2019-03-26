@@ -1,0 +1,55 @@
+.SongListItem {
+    display: flex;
+    flex-direction: row;
+    margin: 2px;
+    padding: 4px;
+    background-color: rgb(31, 31, 46);
+    color: rgb(215, 223, 188);
+    text-align: left;
+}
+
+.songHeader {
+    display: flex;
+    flex-direction: row;
+    align-items: space-evenly;
+    justify-content: space-evenly;
+}
+
+.songName {
+    color: rgb(226, 219, 111);
+    font-size: calc(16px + 2vmin);
+    font-weight: bolder;
+    flex: 1;
+}
+
+.artistName {
+    flex: 1;
+    font-size: calc(16px + 2vmin);
+    font-weight: bold;
+}
+
+.recordingDate {
+    flex: 1;
+    text-align: right;
+    font-style: italic;
+}
+
+.songLength {
+    text-align: center;
+}
+.songInfo {
+   width: 100%;
+   flex: 1;
+   background-color: rgb(203, 203, 211);
+   padding: .2em;
+   color: rgb(51, 53, 46);
+}
+
+.songArt {
+    max-height: 25vh;
+}
+
+.songListItemRight {
+    width: 100%;
+    padding: .4em;
+}

@@ -2,7 +2,8 @@ import React, { Component } from 'react';
 import '../../styles/main-content.css';
 import Firebase from '../../config/firebaseConfig.js'
 
-import ListItem from '../list-items/testListItem.js'
+import SongListItem from '../list-items/SongListItem.js'
+
 
 class SongWall extends Component {
 
@@ -24,7 +25,10 @@ class SongWall extends Component {
 			const previousSongs = this.state.songs;
 			previousSongs.push({
 				songName: snapshot.val().songName,
-				group: snapshot.val().group
+				artistName: snapshot.val().artist,
+				recordingDate: snapshot.val().recorded,
+				songInfo: snapshot.val().info,
+				songLength: '3:33' // Placeholder
 			});
 			this.setState({
 				songs: previousSongs
@@ -35,7 +39,7 @@ class SongWall extends Component {
 	render() {
 		return (
 			<div id="Songs-List">
-				{this.state.songs.map((item) => (<ListItem submission={item} />))}
+				{this.state.songs.map((s) => (<SongListItem song={s} />))}
 			</div>
 		);
 	}
