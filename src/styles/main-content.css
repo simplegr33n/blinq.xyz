@@ -1,4 +1,4 @@
-/* Post Song */
+/* PostSong.js */
 #submit-song-box {
     background: #282c34;
     padding: 16px;
@@ -34,11 +34,36 @@
 }
 
 
-/* SongWall */
+/* SongWall.js */
 #Songs-List {
     width: inherit;
     max-height: calc(100vh - 163px);
     background-color: #cac9c5;
     flex-direction: column;
     overflow-y: scroll;
+}
+
+/* Auth */
+#signin-username {
+
+}
+
+#signup-username {
+
+}
+
+#submit-signin-btn {
+
+}
+
+#submit-signup-btn {
+
+}
+
+#goto-signup-button {
+
+}
+
+#goto-signin-button {
+
 }
