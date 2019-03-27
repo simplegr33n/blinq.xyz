@@ -25,9 +25,14 @@ class SongWall extends Component {
 			const previousSongs = this.state.songs;
 			previousSongs.push({
 				songName: snapshot.val().songName,
-				artistName: snapshot.val().artist,
-				recordingDate: snapshot.val().recorded,
-				songInfo: snapshot.val().info,
+				artist: snapshot.val().artist,
+				recorded: snapshot.val().recorded,
+				info: snapshot.val().info,
+				uploader: snapshot.val().uploader,
+				uploaderName: snapshot.val().uploaderName,
+				uploaded: snapshot.val().uploaded,
+				published: snapshot.val().published,
+				id: snapshot.val().id,
 				songLength: '3:33' // Placeholder
 			});
 			this.setState({

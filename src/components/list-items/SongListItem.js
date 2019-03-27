@@ -11,6 +11,7 @@ class SongListItem extends Component {
         };
     }
 
+    
     render() {
         return (
             <div className="SongListItem">
@@ -24,7 +25,7 @@ class SongListItem extends Component {
                 <div className="songListItemRight">
                     <div className="songHeader">
                         <div className="artistName">
-                            {this.props.song.artistName}
+                            {this.props.song.artist}
                         </div>
                         <div className="songName">
                             {this.props.song.songName}
@@ -34,11 +35,11 @@ class SongListItem extends Component {
                                 year: 'numeric',
                                 month: 'long',
                                 day: '2-digit'
-                            }).format(this.props.song.recordingDate)}
+                            }).format(this.props.song.recorded)}
                         </div>
                     </div>
                     <div className="songInfo">
-                        {this.props.song.songInfo}
+                        {this.props.song.info}
                     </div>
                 </div>
             </div>

@@ -46,8 +46,12 @@ class PostSong extends Component {
         let date = new Date()
         let timestamp = date.getTime()
 
-        // A post entry.
-        var postData = {
+        // Get a key for a new song.
+        var newPostKey = this.firebase.db.ref().child('posts').push().key;
+
+        // A song entry.
+        var songData = {
+            id: newPostKey,
             songName: songname,
             artist: artist,
             info: info,
@@ -55,39 +59,35 @@ class PostSong extends Component {
             uploaded: timestamp,
             uploader: uid,
             uploaderName: username,
-            published: false
+            published: null
         };
 
-        // Get a key for a new Post.
-        var newPostKey = this.firebase.db.ref().child('posts').push().key;
-
-        // Write the new post's data simultaneously in the posts list and the user's post list.
+        // Write the new song's data the user's song list.
         var updates = {};
-        updates['/songs/' + newPostKey] = postData;
-        updates['/user-songs/' + uid + '/' + newPostKey] = postData;
+        updates['/user-songs/' + uid + '/' + newPostKey] = songData;
 
         return this.firebase.db.ref().update(updates);
     }
 
     render() {
         return (
-                <div id="submit-song-box">
-                    <div>
-                        Song Name:
+            <div id="submit-song-box">
+                <div>
+                    Song Name:
                         <textarea id="song-name-area" value={this.state.songName} onChange={this.handleSongNameChange} />
-                    </div>
-                    <div>
-                        Artist:
-                        <textarea id="artist-names-area" value={this.state.artistName} onChange={this.handleArtistNameChange} />
-                    </div>
-                    <div>
-                        Additional Info:
-                        <textarea id="song-info-area" value={this.state.songInfo} onChange={this.handleSongInfoChange} />
-                    </div>
-                    <div id="post-button" onClick={this.handleSubmit}>
-                        Upload Song
-                    </div>
                 </div>
+                <div>
+                    Artist:
+                        <textarea id="artist-names-area" value={this.state.artistName} onChange={this.handleArtistNameChange} />
+                </div>
+                <div>
+                    Additional Info:
+                        <textarea id="song-info-area" value={this.state.songInfo} onChange={this.handleSongInfoChange} />
+                </div>
+                <div id="post-button" onClick={this.handleSubmit}>
+                    Upload Song
+                    </div>
+            </div>
         );
     }
 }

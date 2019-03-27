@@ -137,7 +137,7 @@ class App extends Component {
 											case 'songwall':
 												return <SongWall />;
 											case 'mysongs':
-												return <MySongWall />;
+												return <MySongWall UID={this.state.UID} />;
 											case 'postsong':
 												return <PostSong UID={this.state.UID} username={this.state.username} />;
 											case 'editprofile':

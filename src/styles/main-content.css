@@ -156,14 +156,14 @@
 
 /* Auth */
 #signin-div {
-    background-color: rgb(66, 164, 209);
+    background-color: #94bbce;
     margin: 6px;
     padding: 16px;
     color: #1d1b1b;
 }
 
 #signup-div {
-    background-color: rgb(77, 175, 118);
+    background-color: #8acea6;
     margin: 6px;
     padding: 16px;
     color: #1d1b1b;

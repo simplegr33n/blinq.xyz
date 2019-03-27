@@ -10,6 +10,7 @@ class MySongWall extends Component {
 	constructor(props) {
 		super(props);
 		this.state = {
+			UID: this.props.UID,
 			songs: []
 		};
 
@@ -19,15 +20,20 @@ class MySongWall extends Component {
 
 	getSongs = () => {
 		// Posts branch of tree
-		var ref = this.firebase.db.ref().child('songs')
+		var ref = this.firebase.db.ref().child('user-songs').child(this.state.UID);
 
 		ref.on('child_added', snapshot => {
 			const previousSongs = this.state.songs;
 			previousSongs.push({
 				songName: snapshot.val().songName,
-				artistName: snapshot.val().artist,
-				recordingDate: snapshot.val().recorded,
-				songInfo: snapshot.val().info,
+				artist: snapshot.val().artist,
+				recorded: snapshot.val().recorded,
+				info: snapshot.val().info,
+				uploader: snapshot.val().uploader,
+				uploaderName: snapshot.val().uploaderName,
+				uploaded: snapshot.val().uploaded,
+				published: snapshot.val().published,
+				id: snapshot.val().id,
 				songLength: '3:33' // Placeholder
 			});
 			this.setState({

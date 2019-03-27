@@ -10,10 +10,16 @@ class SignIn extends Component {
         this.state = {
             username: '',
             password: '',
-            SHOWFIELDS: true
+            SHOWFIELDS: false
         };
 
         this.firebase = new Firebase()
+
+        this.firebase.auth.onAuthStateChanged((user) => {
+            if (!user) {
+                this.showSigninFields();
+            }
+        });
     }
 
     handleUsernameChange = (event) => {
@@ -51,7 +57,7 @@ class SignIn extends Component {
             username: '',
             password: ''
         });
-        this.hideLoginFields();
+        this.hideSigninFields();
 
         this.firebase.auth.signInWithEmailAndPassword(username, password).catch(function (error) {
             // Handle Errors here.
@@ -71,11 +77,11 @@ class SignIn extends Component {
 
     }
 
-    hideLoginFields = () => {
+    hideSigninFields = () => {
         this.setState({ SHOWFIELDS: false });
     }
 
-    showLoginFields = () => {
+    showSigninFields = () => {
         this.setState({ SHOWFIELDS: true });
     }
 

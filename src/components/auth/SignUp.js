@@ -9,17 +9,20 @@ class SignUp extends Component {
         super(props);
         this.state = {
             username: '',
-            password: ''
+            password: '',
+            SHOWFIELDS: false
         };
 
         this.firebase = new Firebase()
 
         this.firebase.auth.onAuthStateChanged((user) => {
-			if (user) {
-			  this.postUserToFirebase(user.uid, user.email);
-			}
-          });
-          
+            if (user) {
+                this.postUserToFirebase(user.uid, user.email);
+            } else {
+                this.showSignupFields();
+            }
+        });
+
 
     }
 
@@ -50,6 +53,14 @@ class SignUp extends Component {
     validatePassword(testPswd) {
         var paswdRegex = /^(?=.*[0-9])(?=.*[!@#$%^&*])[a-zA-Z0-9!@#$%^&*]{7,15}$/;
         return paswdRegex.test(String(testPswd));
+    }
+
+    hideSignupFields = () => {
+        this.setState({ SHOWFIELDS: false });
+    }
+
+    showSignupFields = () => {
+        this.setState({ SHOWFIELDS: true });
     }
 
     handleUsernameChange = (event) => {
@@ -88,9 +99,7 @@ class SignUp extends Component {
             return;
             // ...
         });
-
-        console.log(`username ${username}`)
-        this.handleGotoSignIn();
+        
         return;
     }
 
@@ -100,25 +109,34 @@ class SignUp extends Component {
     }
 
     render() {
-        return (
-            <div id="signup-div">
-                <h3>Sign Up</h3>
-                <div>
-                    Email:
-                    <input id="signup-username" value={this.state.username} onChange={this.handleUsernameChange} />
+
+        if (this.state.SHOWFIELDS) {
+            return (
+                <div id="signup-div">
+                    <h3>Sign Up</h3>
+                    <div>
+                        Email:
+                        <input id="signup-username" value={this.state.username} onChange={this.handleUsernameChange} />
+                    </div>
+                    <div>
+                        Password:
+                        <input type="password" id="signup-password" value={this.state.password} onChange={this.handlePasswordChange} />
+                    </div>
+                    <div>
+                        <button id="submit-signup-btn" onClick={this.handleSubmit} > Sign up! </button>
+                    </div>
+                    <div>
+                        <button id="goto-signin-btn" onClick={this.handleGotoSignIn} > Sign in! </button>
+                    </div>
                 </div>
+            );
+        } else {
+            return (
                 <div>
-                    Password:
-                    <input type="password" id="signup-password" value={this.state.password} onChange={this.handlePasswordChange} />
+                    One Moment...
                 </div>
-                <div>
-                    <button id="submit-signup-btn" onClick={this.handleSubmit} > Sign up! </button>
-                </div>
-                <div>
-                    <button id="goto-signin-btn" onClick={this.handleGotoSignIn} > Sign in! </button>
-                </div>
-            </div>
-        );
+            );
+        }
     }
 }
 
