@@ -2,6 +2,7 @@
 #submit-song-box {
     background: #282c34;
     padding: 16px;
+    margin: 6px;
 }
 
 #song-name-area {
@@ -34,16 +35,140 @@
 }
 
 
-/* SongWall.js */
+/* SongWall */
 #Songs-List {
     width: inherit;
-    max-height: calc(100vh - 163px);
-    background-color: #cac9c5;
+    height: calc(100vh - 100px);
     flex-direction: column;
     overflow-y: scroll;
 }
 
+/* SongWall ListItem */
+.SongListItem {
+    display: flex;
+    flex-direction: row;
+    margin: 6px;
+    padding: 4px;
+    background-color: rgb(233, 243, 245);
+    color: rgb(15, 15, 14);
+    text-align: left;
+}
+
+.songHeader {
+    display: flex;
+    flex-direction: row;
+    align-items: space-evenly;
+    justify-content: space-evenly;
+    flex-wrap: wrap;
+}
+
+.songName {
+    color: rgb(17, 17, 16);
+    font-size: calc(12px + 2vmin);
+    font-weight: bolder;
+    flex: 1;
+}
+
+.artistName {
+    flex: 1;
+    font-size: calc(12px + 2vmin);
+    font-weight: bold;
+}
+
+.recordingDate {
+    flex: 1;
+    text-align: right;
+    font-style: italic;
+}
+
+.songLength {
+    text-align: center;
+}
+.songInfo {
+   width: 100%;
+   flex: 1;
+   background-color: rgb(203, 203, 211);
+   padding: .2em;
+   color: rgb(51, 53, 46);
+}
+
+.songArt {
+    max-height: 25vh;
+}
+
+.songListItemRight {
+    width: 100%;
+    padding: .4em;
+}
+
+
+/* MySongWall */
+#MySongs-List {
+    width: inherit;
+    height: calc(100vh - 144px);
+    flex-direction: column;
+    overflow-y: scroll;
+}
+
+#MySongWall-Add-Song-Btns {
+    display: flex;
+    justify-content: flex-end;
+    height: 44px;
+}
+
+#MySongWall-Upload-Btn {
+    background: #eec540;
+    font-size: 18px;
+    font-weight: bold;
+    border: none;
+    height: 33px;
+    margin: 6px;
+}
+
+#MySongWall-Record-Btn {
+    background: #c0281e;
+    font-size: 18px;
+    font-weight: bold;
+    border: none;
+    height: 33px;
+    margin: 6px;
+}
+
+/* MySongWall ListItem */
+.MySongListItem {
+    display: flex;
+    flex-direction: row;
+    margin: 6px;
+    padding: 4px;
+    background-color: rgb(233, 243, 245);
+    color: rgb(15, 15, 14);
+    text-align: left;
+}
+
+.MySong-publish-button {
+    height: 100%;
+}
+
+.MySongArt {
+    max-height: 13vh;
+}
+
+
 /* Auth */
+#signin-div {
+    background-color: rgb(66, 164, 209);
+    margin: 6px;
+    padding: 16px;
+    color: #1d1b1b;
+}
+
+#signup-div {
+    background-color: rgb(77, 175, 118);
+    margin: 6px;
+    padding: 16px;
+    color: #1d1b1b;
+}
+
 #signin-username {
 
 }

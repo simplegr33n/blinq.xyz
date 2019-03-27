@@ -13,7 +13,7 @@
 }
 
 .App-body {
-  background-color: #cccccc;
+  background-color: #5a5252;
   min-height: 100vh;
   display: flex;
   flex-direction: row;
@@ -25,29 +25,28 @@
   position: fixed;
   overflow: hidden;
   top: 0;
-  height: 133px;
+  height: 100px;
   width: inherit;
-  background-color:rgb(31, 30, 30);
+  background-color: #317d92;
   display: flex;
   justify-content: flex-end;
   align-items: center;
 }
 
 #Header-Btns {
-  margin-right: 24px;
+  height: 60%;
 }
 
 #Home-Div {
-  background-color: #e6e8ec;
-  height: 133px;
+  height: 100px;
+  background-color: #317d92;
 }
 
 #App-Body-Content {
   display: flex;
   flex-direction: row;
   margin-left: 240px;
-  padding: 10px;
-  margin-top: 133px;
+  margin-top: 100px;
 }
 
 #App-Inner-Body {
@@ -93,6 +92,45 @@
 .Left-Menu-Btn:active {
   background: #8a93ad;
 }
+
+#Profile-Btn {
+  background: #2d92ac;
+  font-size: 18px;
+  font-weight: bold;
+  border: none;
+  text-align: center;
+  width: 80px;
+  height: 100%;
+  margin-right: 4px;
+}
+
+#Profile-Btn:active {
+  background: #90bfe6;
+}
+
+#Profile-Btn:hover {
+  background: #276c7e;
+}
+
+#Logout-Btn {
+  background: #2d92ac;
+  font-size: 18px;
+  font-weight: bold;
+  border: none;
+  text-align: center;
+  width: 80px;
+  height: 100%;
+  margin-right: 4px;
+}
+
+#Logout-Btn:active {
+  background: #90bfe6;
+}
+
+#Logout-Btn:hover {
+  background: #276c7e;
+}
+
 
 #Main-Content {
   display: flex;

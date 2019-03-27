@@ -13,6 +13,33 @@ class SignUp extends Component {
         };
 
         this.firebase = new Firebase()
+
+        this.firebase.auth.onAuthStateChanged((user) => {
+			if (user) {
+			  this.postUserToFirebase(user.uid, user.email);
+			}
+          });
+          
+
+    }
+
+    postUserToFirebase(uid, username) {
+        let date = new Date()
+        let timestamp = date.getTime()
+
+        // A user entry.
+        var userData = {
+            uid: uid,
+            username: username,
+            createdAt: timestamp,
+            updatedAt: timestamp,
+        };
+
+        // Write the new post's data simultaneously in the posts list and the user's post list.
+        var updates = {};
+        updates['/users/' + uid] = userData;
+
+        return this.firebase.db.ref().update(updates);
     }
 
     validateEmail(testEmail) {
@@ -39,16 +66,18 @@ class SignUp extends Component {
         console.log(`SignUp submit pressed - username ${username}`);
         if (!this.validateEmail(username)) {
             alert('Bad email me thinks :(')
+            this.setState({
+                username: ''
+            });
             return;
         }
         if (!this.validatePassword(password)) {
             alert('Bad password. Must be 7-15 characters with at least 1 numeric digit and a special character.')
+            this.setState({
+                password: ''
+            });
             return;
         }
-        this.setState({
-            username: '',
-            password: ''
-        });
 
         this.firebase.auth.createUserWithEmailAndPassword(username, password).catch(function (error) {
             // Handle Errors here.
@@ -72,10 +101,10 @@ class SignUp extends Component {
 
     render() {
         return (
-            <div>
-                Sign Up
+            <div id="signup-div">
+                <h3>Sign Up</h3>
                 <div>
-                    Username (email):
+                    Email:
                     <input id="signup-username" value={this.state.username} onChange={this.handleUsernameChange} />
                 </div>
                 <div>

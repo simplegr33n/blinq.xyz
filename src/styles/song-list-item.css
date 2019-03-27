@@ -2,10 +2,10 @@
 .SongListItem {
     display: flex;
     flex-direction: row;
-    margin: 2px;
+    margin: 6px;
     padding: 4px;
-    background-color: rgb(31, 31, 46);
-    color: rgb(215, 223, 188);
+    background-color: rgb(233, 243, 245);
+    color: rgb(15, 15, 14);
     text-align: left;
 }
 
@@ -14,18 +14,19 @@
     flex-direction: row;
     align-items: space-evenly;
     justify-content: space-evenly;
+    flex-wrap: wrap;
 }
 
 .songName {
-    color: rgb(226, 219, 111);
-    font-size: calc(16px + 2vmin);
+    color: rgb(17, 17, 16);
+    font-size: calc(12px + 2vmin);
     font-weight: bolder;
     flex: 1;
 }
 
 .artistName {
     flex: 1;
-    font-size: calc(16px + 2vmin);
+    font-size: calc(12px + 2vmin);
     font-weight: bold;
 }
 

@@ -9,7 +9,8 @@ class SignIn extends Component {
         super(props);
         this.state = {
             username: '',
-            password: ''
+            password: '',
+            SHOWFIELDS: true
         };
 
         this.firebase = new Firebase()
@@ -50,6 +51,7 @@ class SignIn extends Component {
             username: '',
             password: ''
         });
+        this.hideLoginFields();
 
         this.firebase.auth.signInWithEmailAndPassword(username, password).catch(function (error) {
             // Handle Errors here.
@@ -57,6 +59,8 @@ class SignIn extends Component {
             var errorMessage = error.message;
 
             console.log(`${errorCode}: ${errorMessage}`)
+            alert(`${errorCode}: ${errorMessage}`)
+            this.setState({ SHOWFIELDS: true });
             return;
             // ...
         });
@@ -67,32 +71,50 @@ class SignIn extends Component {
 
     }
 
+    hideLoginFields = () => {
+        this.setState({ SHOWFIELDS: false });
+    }
+
+    showLoginFields = () => {
+        this.setState({ SHOWFIELDS: true });
+    }
+
     handleGotoSignUp = () => {
         this.props.gotoSignUp("signup");
         console.log("Goto signup pressed");
     }
 
     render() {
-        return (
-            <div>
-                Sign In
+
+        if (this.state.SHOWFIELDS) {
+            return (
+                <div id="signin-div">
+                    <h3>Sign In</h3>
                     <div>
-                    Email:
+                        Email:
                         <input id="signin-username" value={this.state.username} onChange={this.handleUsernameChange} />
-                </div>
-                <div>
-                    Password:
+                    </div>
+                    <div>
+                        Password:
                         <input type="password" id="signin-password" value={this.state.password} onChange={this.handlePasswordChange} />
+                    </div>
+                    <div>
+                        <button id="submit-signin-btn" onClick={this.handleSubmit} > Sign in! </button>
+                    </div>
+                    <div>
+                        <button id="goto-signup-btn" onClick={this.handleGotoSignUp} > Sign up! </button>
+                    </div>
                 </div>
+            );
+        } else {
+            return (
                 <div>
-                    <button id="submit-signin-btn" onClick={this.handleSubmit} > Sign in! </button>
+                    One Moment...
                 </div>
-                <div>
-                    <button id="goto-signup-btn" onClick={this.handleGotoSignUp} > Sign up! </button>
-                </div>
-            </div>
-        );
+            );
+        }
     }
 }
+
 
 export default SignIn;

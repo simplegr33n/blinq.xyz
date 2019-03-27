@@ -30,7 +30,7 @@ class PostSong extends Component {
 
     handleSubmit = () => {
         if (this.state.songName === '' || this.state.artistName === '' || this.state.songInfo === '') {
-            console.log("Missing information for song submit...")
+            console.log("Missing information for song upload...")
             return;
         }
         console.log(`submitPressed: ${this.state.artistName} - ${this.state.songName}: ${this.state.songInfo}`)
@@ -39,7 +39,7 @@ class PostSong extends Component {
         this.setState({ songInfo: '' });
 
         // Send to Firebase
-        this.postToFirebase(777, "yarl", this.state.songName, this.state.artistName, this.state.songInfo)
+        this.postToFirebase(this.props.UID, this.props.username, this.state.songName, this.state.artistName, this.state.songInfo)
     }
 
     postToFirebase(uid, username, songname, artist, info) {
@@ -54,7 +54,8 @@ class PostSong extends Component {
             recorded: timestamp,
             uploaded: timestamp,
             uploader: uid,
-            uploaderName: username
+            uploaderName: username,
+            published: false
         };
 
         // Get a key for a new Post.
@@ -84,7 +85,7 @@ class PostSong extends Component {
                         <textarea id="song-info-area" value={this.state.songInfo} onChange={this.handleSongInfoChange} />
                     </div>
                     <div id="post-button" onClick={this.handleSubmit}>
-                        Firebase Post
+                        Upload Song
                     </div>
                 </div>
         );

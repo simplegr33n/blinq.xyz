@@ -13,14 +13,14 @@ class SongListItem extends Component {
 
     render() {
         return (
-            <div className="SongListItem">
+            <div className="MySongListItem">
                 <div>
-                    <img src={TESTSongArt} className="songArt" alt="Song Art" />
+                    <img src={TESTSongArt} className="MySongArt" alt="Song Art" />
                     <div className="songLength">
                         {this.props.song.songLength}
                     </div>
                 </div>
-                
+
                 <div className="songListItemRight">
                     <div className="songHeader">
                         <div className="artistName">
@@ -40,6 +40,9 @@ class SongListItem extends Component {
                     <div className="songInfo">
                         {this.props.song.songInfo}
                     </div>
+                </div>
+                <div>
+                    <button class="MySong-publish-button">UNPUBLISHED</button>
                 </div>
             </div>
         );

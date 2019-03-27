@@ -12,6 +12,8 @@ import SignUp from './components/auth/SignUp.js'
 // Main Content
 import PostSong from './components/main-content/PostSong.js'
 import SongWall from './components/main-content/SongWall.js'
+import MySongWall from './components/main-content/MySongWall.js'
+import EditProfile from './components/main-content/EditProfile.js'
 
 
 class App extends Component {
@@ -19,16 +21,36 @@ class App extends Component {
 	constructor(props) {
 		super(props);
 		this.state = {
-			mainContent: 'signin', // signin, signup, postsong, songwall, mysongs, record, etc.
-			SIGNEDIN: false,
-			UUID: null
+			mainContent: 'signin', // signin, signup, postsong, songwall, mysongs, editprofile, record, etc.
+			UID: null,
+			username: ''
 		};
 
 		this.firebase = new Firebase()
+		this.firebase.auth.onAuthStateChanged((user) => {
+			if (user) {
+				console.log(`UID: ${user.uid}`);
+				this.setState({ UID: user.uid });
+				this.getUsername();
+			}
+		});
+
+	}
+
+	getUsername = () => {
+		// Users location in tree
+		var ref = this.firebase.db.ref().child('users').child(this.state.UID)
+
+		ref.on("value", (snapshot) => {
+			this.setState({ username: snapshot.val().username });
+		  }, function (errorObject) {
+			console.log("The read failed: " + errorObject.code);
+		  });
+
 	}
 
 	handleSignOut = () => {
-		this.setState({ SIGNEDIN: false });
+		this.setState({ UID: null });
 		this.firebase.auth.signOut().then(function () {
 			// Sign-out successful.
 			console.log(`signed out`)
@@ -39,22 +61,10 @@ class App extends Component {
 	}
 
 	handleSignIn = () => {
-		// set UUID, set signedin
+		// set UID, page to SongWall
 		this.setState({
-			SIGNEDIN: true,
 			mainContent: 'songwall'
 		});
-	}
-
-	handleSubmit = () => {
-		console.log("submitPressed: " + this.state.songName)
-
-		this.setState({ groupName: '' });
-		this.setState({ artistNames: '' });
-		this.setState({ songInfo: '' });
-
-		// Send to Firebase
-		this.postToFirebase(777, "yarl", this.state.groupName, this.state.songName, this.state.artistNames, this.state.songInfo)
 	}
 
 	setMainContent = (setValue) => {
@@ -79,6 +89,12 @@ class App extends Component {
 		}
 	}
 
+	openEditProfile = () => {
+		if (this.state.mainContent !== 'editprofile') {
+			this.setState({ mainContent: 'editprofile' });
+		}
+	}
+
 
 	render() {
 		return (
@@ -87,10 +103,10 @@ class App extends Component {
 					<div id="App-Inner-Body">
 						<div id="App-Header">
 							{(() => {
-								if (this.state.SIGNEDIN) {
+								if (this.state.UID) {
 									return (
 										<div id="Header-Btns">
-											<button id="Profile-Btn">Profile</button>
+											<button id="Profile-Btn" onClick={this.openEditProfile}>Profile</button>
 											<button id="Logout-Btn" onClick={this.handleSignOut}>Logout</button>
 										</div>
 									);
@@ -102,29 +118,30 @@ class App extends Component {
 								<div id="Home-Div">
 									<img src={cornerLogo} className="Muslinq-logo" alt="muslinq-logo" />
 								</div>
-
 								{(() => {
-									if (this.state.SIGNEDIN) {
+									if (this.state.UID) {
 										return (
 											<div id="Main-Left-Menu">
 												<button className="Left-Menu-Btn" onClick={this.openSongWall}>Song Wall</button>
 												<button className="Left-Menu-Btn" onClick={this.openMySongs}>My Songs</button>
-												<button className="Left-Menu-Btn" onClick={this.openPostSong}>Post Song</button>
+												<button className="Left-Menu-Btn" onClick={this.openPostSong}>Upload Song</button>
 											</div>
 										);
 									}
 								})()}
-
-
 							</div>
 							<div id="Main-Content">
 								{(() => {
-									if (this.state.SIGNEDIN) {
+									if (this.state.UID) {
 										switch (this.state.mainContent) {
 											case 'songwall':
 												return <SongWall />;
+											case 'mysongs':
+												return <MySongWall />;
 											case 'postsong':
-												return <PostSong />;
+												return <PostSong UID={this.state.UID} username={this.state.username} />;
+											case 'editprofile':
+												return <EditProfile UID={this.state.UID} username={this.state.username} />;
 											default:
 												return <SongWall />;
 										}
