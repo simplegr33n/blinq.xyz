@@ -17,6 +17,12 @@ class SongWall extends Component {
 		this.getSongs()
 	}
 
+
+	handleSetSong = (setValue) => {
+		// set song in App.js
+		this.props.setSong(setValue);
+	}
+
 	getSongs = () => {
 		// Posts branch of tree
 		var ref = this.firebase.db.ref().child('songs')
@@ -24,6 +30,7 @@ class SongWall extends Component {
 		ref.on('child_added', snapshot => {
 			const previousSongs = this.state.songs;
 			previousSongs.push({
+				url: snapshot.val().url,
 				songName: snapshot.val().songName,
 				artist: snapshot.val().artist,
 				recorded: snapshot.val().recorded,
@@ -44,7 +51,7 @@ class SongWall extends Component {
 	render() {
 		return (
 			<div id="Songs-List">
-				{this.state.songs.map((s) => (<SongListItem song={s} />))}
+				{this.state.songs.map((s) => (<SongListItem song={s} setSong={this.handleSetSong}/>))}
 			</div>
 		);
 	}

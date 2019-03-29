@@ -11,6 +11,10 @@ class SongListItem extends Component {
         };
     }
 
+    handlePlay = () => {
+        // pass song to SongWall, which will pass on to App
+		this.props.setSong(this.props.song);
+	}
     
     render() {
         return (
@@ -41,6 +45,7 @@ class SongListItem extends Component {
                     <div className="songInfo">
                         {this.props.song.info}
                     </div>
+                    <button id="Song-Item-Play-Btn" onClick={this.handlePlay}>&#9654;</button>
                 </div>
             </div>
         );

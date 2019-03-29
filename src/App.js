@@ -27,7 +27,8 @@ class App extends Component {
 		this.state = {
 			mainContent: 'signin', // signin, signup, postsong, songwall, studio, editprofile, record, etc.
 			UID: null,
-			username: ''
+			username: '',
+			currentSong: null
 		};
 
 		this.firebase = new Firebase()
@@ -69,6 +70,16 @@ class App extends Component {
 		this.setState({
 			mainContent: 'songwall'
 		});
+	}
+
+	handleSetSong = (setValue) => {
+		console.log("handle dat set song " + setValue.url)
+
+		if (this.state.currentSong !== setValue) {
+			this.setState({
+				currentSong: setValue
+			});
+		}
 	}
 
 	setMainContent = (setValue) => {
@@ -116,7 +127,7 @@ class App extends Component {
 							{(() => {
 								if (this.state.UID) {
 									return (
-										<TopBarPlayer />
+										<TopBarPlayer song={this.state.currentSong}/>
 									);
 								}
 							})()}
@@ -154,7 +165,7 @@ class App extends Component {
 									if (this.state.UID) {
 										switch (this.state.mainContent) {
 											case 'songwall':
-												return <SongWall />;
+												return <SongWall setSong={this.handleSetSong} />;
 											case 'studio':
 												return <Studio UID={this.state.UID} goto={this.setMainContent} />;
 											case 'postsong':
@@ -164,7 +175,7 @@ class App extends Component {
 											case 'editprofile':
 												return <EditProfile UID={this.state.UID} username={this.state.username} />;
 											default:
-												return <SongWall />;
+												return <SongWall setSong={this.handleSetSong} />;
 										}
 									} else {
 										switch (this.state.mainContent) {

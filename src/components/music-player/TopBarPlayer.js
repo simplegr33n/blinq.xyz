@@ -6,7 +6,7 @@ class TopBarPlayer extends Component {
 	constructor(props) {
 		super(props);
 		this.state = {
-			song: this.props.song,
+			song: {},
 			fillPosition: "0%"
 		};
 
@@ -18,19 +18,25 @@ class TopBarPlayer extends Component {
 		});
 	}
 
-	playSong = () => {
-		console.log(this.audioPlayer.src + " SRUCE")
-		this.audioPlayer.src = "song01.mp3";
-		console.log(this.audioPlayer.src + " SRUCE")
-		this.audioPlayer.play();
+	componentWillReceiveProps() {
+		if (this.props.song === null || this.props.song === undefined) {
+			return;
+		}
+
+		console.log("topbarplayer: " + this.props.song)
+
+		if (this.props.song !== this.state.song) {
+			this.setState({
+				song: this.props.song
+			});
+			this.audioPlayer.src = this.props.song.url;
+			this.audioPlayer.play();
+		}
 	}
 
 	handlePlayOrPause = () => {
 		if (this.audioPlayer.src === '') {
-			this.audioPlayer.src = "song01.mp3";
-			console.log(`audioPlayer add src: ${this.audioPlayer.src}`)
-			console.log(`audioPlayer play src: ${this.audioPlayer.src}`)
-			this.audioPlayer.play();
+			alert("No file!")
 			return;
 		}
 		if (this.audioPlayer.ended || this.audioPlayer.paused) {
@@ -55,10 +61,10 @@ class TopBarPlayer extends Component {
 						Song
 					</div>
 				</div>
-                <div id="seek-bar">
-                    <div id="fill" style={{width: this.state.fillPosition}}></div>
-                    <div id="handle"></div>
-                </div>
+				<div id="seek-bar">
+					<div id="fill" style={{ width: this.state.fillPosition }}></div>
+					<div id="handle"></div>
+				</div>
 				<div id="Top-Player-Btns">
 					<button>&#9198; </button>
 					<button id="TP-Play-Pause-Btn" onClick={this.handlePlayOrPause}>&#9654; / &#9208;</button>
