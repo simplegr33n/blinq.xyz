@@ -54,12 +54,9 @@
 }
 
 #Home-Div:hover {
-  background-color: #319285;
+  background-color: #4390a5;
 }
 
-#Home-Div:active {
-  background-color: #14a367;
-}
 
 #App-Body-Content {
   display: flex;

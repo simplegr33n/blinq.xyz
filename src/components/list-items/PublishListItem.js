@@ -4,7 +4,7 @@ import Firebase from '../../config/firebaseConfig.js';
 
 import TESTSongArt from '../../assets/TESTdarkside.jpeg';
 
-class SongListItem extends Component {
+class PublishListItem extends Component {
 
     constructor(props) {
         super(props);
@@ -79,11 +79,11 @@ class SongListItem extends Component {
                     </div>
                 </div>
                 <div>
-                    <button class="MySong-publish-button" onClick={this.handlePublishPressed}>UNPUBLISHED</button>
+                    <button className="MySong-publish-button" onClick={this.handlePublishPressed}>UNPUBLISHED</button>
                 </div>
             </div>
         );
     }
 }
 
-export default SongListItem;
+export default PublishListItem;

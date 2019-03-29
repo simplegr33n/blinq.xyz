@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import '../../styles/main-content.css';
 import Firebase from '../../config/firebaseConfig.js'
 
-import MySongListItem from '../list-items/MySongListItem.js'
+import PublishListItem from '../list-items/PublishListItem.js'
 
 
 class Studio extends Component {
@@ -34,6 +34,7 @@ class Studio extends Component {
 			const previousSongs = this.state.songs;
 			previousSongs.push({
 				songName: snapshot.val().songName,
+				url: snapshot.val().url,
 				artist: snapshot.val().artist,
 				recorded: snapshot.val().recorded,
 				info: snapshot.val().info,
@@ -58,7 +59,7 @@ class Studio extends Component {
 					<button id="MySongWall-Record-Btn" onClick={this.handleRecord}>Record Song</button>
 				</div>
 				<div id="MySongs-List">
-					{this.state.songs.map((s) => (<MySongListItem song={s} />))}
+					{this.state.songs.map((s) => (<PublishListItem song={s} />))}
 				</div>
 			</div>
 

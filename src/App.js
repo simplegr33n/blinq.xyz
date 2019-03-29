@@ -143,6 +143,7 @@ class App extends Component {
 													</button>
 												</div>
 												<button className="Left-Menu-Btn" onClick={this.openStudio}>Studio</button>
+												<button className="Left-Menu-Btn" onClick={this.openSongWall}>Songwall</button>
 											</div>
 										);
 									}
