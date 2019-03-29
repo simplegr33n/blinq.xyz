@@ -105,9 +105,9 @@ class PostSong extends Component {
                     Additional Info:
                         <textarea id="song-info-area" value={this.state.songInfo} onChange={this.handleSongInfoChange} />
                 </div>
-                <div id="post-button" onClick={this.handleSubmit}>
+                <button id="post-button" onClick={this.handleSubmit}>
                     Upload Song
-                    </div>
+                </button>
             </div>
         );
     }

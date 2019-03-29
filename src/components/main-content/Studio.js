@@ -54,11 +54,11 @@ class Studio extends Component {
 	render() {
 		return (
 			<div>
-				<div id="MySongWall-Add-Song-Btns">
-					<button id="MySongWall-Upload-Btn" onClick={this.handleUpload}>Upload File</button>
-					<button id="MySongWall-Record-Btn" onClick={this.handleRecord}>Record Song</button>
+				<div id="Studio-Add-Song-Btns">
+					<button id="Studio-Upload-Btn" onClick={this.handleUpload}>Upload File</button>
+					<button id="Studio-Record-Btn" onClick={this.handleRecord}>Record Song</button>
 				</div>
-				<div id="MySongs-List">
+				<div id="Studio-Songs-List">
 					{this.state.songs.map((s) => (<PublishListItem song={s} />))}
 				</div>
 			</div>

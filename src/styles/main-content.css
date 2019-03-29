@@ -119,13 +119,13 @@
     overflow-y: scroll;
 }
 
-#PublishSongWall-Add-Song-Btns {
+#Studio-Add-Song-Btns {
     display: flex;
     justify-content: flex-end;
     height: 44px;
 }
 
-#PublishSongWall-Upload-Btn {
+#Studio-Upload-Btn {
     border-radius: 15px;
     background: #49b2e6;
     font-size: 18px;
@@ -135,15 +135,15 @@
     margin: 6px;
 }
 
-#PublishSongWall-Upload-Btn:hover {
+#Studio-Upload-Btn:hover {
     background: #60c0f0;
 }
 
-#PublishSongWall-Upload-Btn:active {
+#Studio-Upload-Btn:active {
     background: rgb(125, 207, 248);
 }
 
-#PublishSongWall-Record-Btn {
+#Studio-Record-Btn {
     border-radius: 15px;
     background: #da382d;
     font-size: 18px;
@@ -153,11 +153,11 @@
     margin: 6px;
 }
 
-#PublishSongWall-Record-Btn:hover {
+#Studio-Record-Btn:hover {
     background: #f75d52;
 }
 
-#PublishSongWall-Record-Btn:active {
+#Studio-Record-Btn:active {
     background: #ff7b71;
 }
 

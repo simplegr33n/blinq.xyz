@@ -15,6 +15,7 @@ import Studio from './components/main-content/Studio.js'
 import RecordSong from './components/main-content/RecordSong.js'
 import PostSong from './components/main-content/PostSong.js'
 import EditProfile from './components/main-content/EditProfile.js'
+import Profile from './components/main-content/Profile.js'
 
 // Music Player
 import TopBarPlayer from './components/music-player/TopBarPlayer.js'
@@ -25,10 +26,11 @@ class App extends Component {
 	constructor(props) {
 		super(props);
 		this.state = {
-			mainContent: 'signin', // signin, signup, postsong, songwall, studio, editprofile, record, etc.
+			mainContent: 'signin', // signin, signup, postsong, songwall, studio, profile, editprofile, record, etc.
 			UID: null,
 			username: '',
-			currentSong: null
+			currentSong: null, // for playing... TODO://also need something for songpage viewing
+			viewProfile: null // set to ID of profile you want to view
 		};
 
 		this.firebase = new Firebase()
@@ -47,7 +49,10 @@ class App extends Component {
 		var ref = this.firebase.db.ref().child('users').child(this.state.UID)
 
 		ref.on("value", (snapshot) => {
-			this.setState({ username: snapshot.val().username });
+			this.setState({ 
+				user: snapshot.val(),
+				username: snapshot.val().username // probably just need to set user in state
+			 });
 		}, function (errorObject) {
 			console.log("The read failed: " + errorObject.code);
 		});
@@ -89,6 +94,10 @@ class App extends Component {
 		this.setState({ mainContent: setValue });
 	}
 
+	handleSearch = () => {
+		alert("App.handleSearch... nothing doing yet")
+	}
+
 	openSongWall = () => {
 		if (this.state.mainContent !== 'songwall') {
 			this.setState({ mainContent: 'songwall' });
@@ -119,6 +128,17 @@ class App extends Component {
 		}
 	}
 
+	gotoProfile = (uid) => {
+		console.log("goto profile: " + uid)
+
+		if (this.state.viewProfile !== uid) {
+			this.setState({ viewProfile: uid });
+		}
+		if (this.state.mainContent !== 'profile') {
+			this.setState({ mainContent: 'profile' });
+		}
+	}
+
 
 	render() {
 		return (
@@ -145,12 +165,12 @@ class App extends Component {
 										return (
 											<div id="Main-Left-Menu">
 												<div id="Header-Btns">
-													<button id="Profile-Btn" onClick={this.openEditProfile}>Profile</button>
+													<button id="Profile-Btn" onClick={this.openEditProfile}>My Profile</button>
 													<button id="Logout-Btn" onClick={this.handleSignOut}>Logout</button>
 												</div>
 												<div id="Search-Div">
 													<input id="Search-Input" />
-													<button id="Search-Btn" onClick={this.handleSignOut}>
+													<button id="Search-Btn" onClick={this.handleSearch}>
 														<div id="mag-glass">
 															&#9906;
 														</div>
@@ -176,7 +196,9 @@ class App extends Component {
 											case 'record':
 												return <RecordSong UID={this.state.UID} username={this.state.username} />;
 											case 'editprofile':
-												return <EditProfile UID={this.state.UID} username={this.state.username} />;
+												return <EditProfile user={this.state.user} gotoProfile={this.gotoProfile} />;
+											case 'profile':
+												return <Profile user={this.state.user} />;
 											default:
 												return <SongWall setSong={this.handleSetSong} />;
 										}

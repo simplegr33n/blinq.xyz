@@ -49,15 +49,28 @@ class TopBarPlayer extends Component {
 	render() {
 		return (
 			<div id="Top-Bar-Player">
-				<div id="Top-Player-Info-Div">
-					<div>
-						Artist
-					</div>
-					-
-					<div>
-						Song
-					</div>
-				</div>
+
+
+				{(() => {
+					if (this.state.song !== null) {
+						return (
+							<div id="Top-Player-Info-Div">
+								<div id="Top-Player-Artist">
+									{this.state.song.artist}
+								</div>
+								-
+								<div id="Top-Player-Song">
+									{this.state.song.songName}
+								</div>
+							</div>
+						);
+					}
+				})()}
+
+
+
+
+
 				<div id="seek-bar">
 					<div id="fill" style={{ width: this.state.fillPosition }}></div>
 					<div id="handle"></div>
