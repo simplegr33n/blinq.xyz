@@ -45,7 +45,7 @@ class SongListItem extends Component {
                     <div className="songInfo">
                         {this.props.song.info}
                     </div>
-                    <button id="Song-Item-Play-Btn" onClick={this.handlePlay}>&#9654;</button>
+                    <button className="Song-Item-Play-Btn" onClick={this.handlePlay}>&#9654;</button>
                 </div>
             </div>
         );

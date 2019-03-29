@@ -18,7 +18,8 @@ class TopBarPlayer extends Component {
 		});
 	}
 
-	componentWillReceiveProps() {
+	componentWillReceiveProps(props) {
+		console.log("topbarplayer: will receive props" + props + "this.props.song:" + this.props.song)
 		if (this.props.song === null || this.props.song === undefined) {
 			return;
 		}

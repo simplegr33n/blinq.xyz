@@ -1,4 +1,5 @@
 /* PostSong.js */
+
 #submit-song-box {
     background: #282c34;
     padding: 16px;
@@ -34,8 +35,8 @@
     user-select: none;
 }
 
-
 /* SongWall */
+
 #Songs-List {
     width: inherit;
     height: calc(100vh - 100px);
@@ -50,7 +51,7 @@
     flex-direction: row;
     margin: 6px;
     padding: 7px;
-    background-color: rgb(233, 243, 245);
+    background-color: #317d92;
     color: rgb(15, 15, 14);
     text-align: left;
 }
@@ -85,23 +86,30 @@
 .songLength {
     text-align: center;
 }
+
 .songInfo {
-   width: 100%;
-   flex: 1;
-   background-color: rgb(203, 203, 211);
-   padding: .2em;
-   color: rgb(51, 53, 46);
+    border-radius: 15px;
+    width: 100%;
+    height: 75px;
+    flex: 1;
+    background-color: rgb(203, 203, 211);
+    padding: .2em;
+    color: rgb(51, 53, 46);
 }
 
 .songArt {
+    border-radius: 15px;
     max-height: 25vh;
+}
+
+.Song-Item-Play-Btn {
+    border-radius: 15px;
 }
 
 .songListItemRight {
     width: 100%;
     padding: .4em;
 }
-
 
 /* MySongWall */
 #MySongs-List {
@@ -118,7 +126,8 @@
 }
 
 #MySongWall-Upload-Btn {
-    background: #eec540;
+    border-radius: 15px;
+    background: #49b2e6;
     font-size: 18px;
     font-weight: bold;
     border: none;
@@ -126,13 +135,30 @@
     margin: 6px;
 }
 
+#MySongWall-Upload-Btn:hover {
+    background: #60c0f0;
+}
+
+#MySongWall-Upload-Btn:active {
+    background: rgb(125, 207, 248);
+}
+
 #MySongWall-Record-Btn {
-    background: #c0281e;
+    border-radius: 15px;
+    background: #da382d;
     font-size: 18px;
     font-weight: bold;
     border: none;
     height: 33px;
     margin: 6px;
+}
+
+#MySongWall-Record-Btn:hover {
+    background: #f75d52;
+}
+
+#MySongWall-Record-Btn:active {
+    background: #ff7b71;
 }
 
 /* MySongWall ListItem */
@@ -141,7 +167,7 @@
     flex-direction: row;
     margin: 6px;
     padding: 4px;
-    background-color: rgb(233, 243, 245);
+    background-color: #7d9ea5;
     color: rgb(15, 15, 14);
     text-align: left;
 }
@@ -154,8 +180,8 @@
     max-height: 13vh;
 }
 
-
 /* Auth */
+
 #signin-div {
     background-color: #94bbce;
     margin: 6px;
@@ -170,26 +196,14 @@
     color: #1d1b1b;
 }
 
-#signin-username {
+#signin-username {}
 
-}
+#signup-username {}
 
-#signup-username {
+#submit-signin-btn {}
 
-}
+#submit-signup-btn {}
 
-#submit-signin-btn {
+#goto-signup-button {}
 
-}
-
-#submit-signup-btn {
-
-}
-
-#goto-signup-button {
-
-}
-
-#goto-signin-button {
-
-}
+#goto-signin-button {}

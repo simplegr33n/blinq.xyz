@@ -14,7 +14,7 @@
 }
 
 .App-body {
-  background-color: #5a5252;
+  background-color: #dedede;
   min-height: 100vh;
   display: flex;
   flex-direction: row;
@@ -36,6 +36,7 @@
 
 #Header-Btns {
   margin-bottom: 2px;
+  height: 24px;
   display: flex;
   justify-content: flex-start;
 }
@@ -87,29 +88,32 @@
   height: 100%;
   width: 240px;
   z-index: 1;
-  background-color: #317d92;
+  background-color: #030308;
   overflow-x: hidden;
 }
 
-.Left-Menu-Btn {
+.Main-Left-Menu-Btn {
   background: #4e5461;
   font-size: 18px;
+  border-radius: 15px;
   font-weight: bold;
   border: none;
+  border-radius: 15px;
   height: 67px;
   margin: 2px;
 }
 
-.Left-Menu-Btn:hover {
+.Main-Left-Menu-Btn:hover {
   background: #496870;
 }
 
-.Left-Menu-Btn:active {
+.Main-Left-Menu-Btn:active {
   background: #8a93ad;
 }
 
 #Profile-Btn {
   background: #466c75;
+  border-radius: 15px;
   font-size: .7em;
   font-weight: bold;
   flex-grow: 1;
@@ -129,6 +133,7 @@
 
 #Logout-Btn {
   background: #466c75;
+  border-radius: 15px;
   font-size: .7em;
   font-weight: bold;
   flex-grow: 1;
@@ -146,23 +151,24 @@
   background: #276c7e;
 }
 
+#Search-Input {
+  width: 20px;
+  border-radius: 15px;
+  font-size: 1em;
+  flex-grow: 1;
+  max-height: 100%;
+}
+
 #Search-Btn {
   background: #466c75;
+  border-radius: 15px;
   font-size: 1.5em;
   font-weight: bold;
   border: none;
   text-align: center;
-  width: 80px;
+  min-width: 41px;
   height: 100%;
   margin-left: 2px;
-}
-
-#mag-glass {
-    /* rotate the character */
-    -webkit-transform: rotate(45deg);
-    -moz-transform: rotate(45deg);
-    -o-transform: rotate(45deg);
-    transform: rotate(45deg);
 }
 
 #Search-Btn:active {
@@ -173,10 +179,12 @@
   background: #276c7e;
 }
 
-#Search-Input {
-  font-size: 1em;
-  flex-grow: 1;
-  max-height: 100%;
+#mag-glass {
+  /* rotate the character */
+  -webkit-transform: rotate(45deg);
+  -moz-transform: rotate(45deg);
+  -o-transform: rotate(45deg);
+  transform: rotate(45deg);
 }
 
 #Main-Content {

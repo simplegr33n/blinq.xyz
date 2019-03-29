@@ -79,7 +79,17 @@ class PublishListItem extends Component {
                     </div>
                 </div>
                 <div>
-                    <button className="MySong-publish-button" onClick={this.handlePublishPressed}>UNPUBLISHED</button>
+                    {(() => {
+								if (this.props.song.published) {
+									return (
+										<button className="MySong-publish-button" onClick={this.handlePublishPressed}>UNPUBLISH</button>
+									);
+								} else {
+                                    return (
+										<button className="MySong-publish-button" onClick={this.handlePublishPressed}>PUBLISH</button>
+									);
+                                }
+							})()}
                 </div>
             </div>
         );
