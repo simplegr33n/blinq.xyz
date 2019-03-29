@@ -9,6 +9,7 @@ class PublishListItem extends Component {
     constructor(props) {
         super(props);
         this.state = {
+            song: this.props.song
         };
 
         this.firebase = new Firebase()
@@ -23,6 +24,7 @@ class PublishListItem extends Component {
             let date = new Date()
             let timestamp = date.getTime()
             pubSong.published = timestamp;
+            this.setState({ song: pubSong });
 
             console.log("PUB!" + pubSong)
 
@@ -34,6 +36,7 @@ class PublishListItem extends Component {
             return this.firebase.db.ref().update(pub);
         } else {
             pubSong.published = null;
+            this.setState({ song: pubSong });
 
             console.log("UNPUB!" + pubSong)
 
@@ -51,16 +54,18 @@ class PublishListItem extends Component {
     render() {
         return (
             <div className="PublishSongListItem">
-            
-                    <img src={TESTSongArt} className="PublishSongArt" alt="Song Art" />
-          
+
+                <img src={TESTSongArt} className="PublishSongArt" alt="Song Art" />
+
                 <div className="songListItemRight">
                     <div className="songHeader">
-                        <div className="PublishSongArtistName">
-                            {this.props.song.artist}
-                        </div>
-                        <div className="PublishSongName">
-                            {this.props.song.songName}
+                        <div>
+                            <div className="PublishSongName">
+                                {this.props.song.songName}
+                            </div>
+                            <div className="PublishSongArtistName">
+                                {this.props.song.artist}
+                            </div>
                         </div>
                         <div className="PublishSongRecordingDate">
                             {new Intl.DateTimeFormat('en-GB', {
@@ -73,22 +78,25 @@ class PublishListItem extends Component {
                     <div className="PublishSongInfo">
                         {this.props.song.info}
                     </div>
-                    <div className="PublishSongLength">
-                        {this.props.song.songLength}
-                    </div>
                 </div>
                 <div>
                     {(() => {
-								if (this.props.song.published) {
-									return (
-										<button className="PublishSong-publish-button" onClick={this.handlePublishPressed}>UNPUBLISH</button>
-									);
-								} else {
-                                    return (
-										<button className="PublishSong-publish-button" onClick={this.handlePublishPressed}>PUBLISH</button>
-									);
-                                }
-							})()}
+                        if (this.state.song.published) {
+                            return (
+                                <button className="PublishSong-unpublish-button" onClick={this.handlePublishPressed}>
+                                    🛇<br />
+                                    UNPUBLISH
+                                </button>
+                            );
+                        } else {
+                            return (
+                                <button className="PublishSong-publish-button" onClick={this.handlePublishPressed}>
+                                    ✓<br />
+                                    PUBLISH
+                                </button>
+                            );
+                        }
+                    })()}
                 </div>
             </div>
         );

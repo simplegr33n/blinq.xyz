@@ -13,26 +13,29 @@ class SongListItem extends Component {
 
     handlePlay = () => {
         // pass song to SongWall, which will pass on to App
-		this.props.setSong(this.props.song);
-	}
-    
+        this.props.setSong(this.props.song);
+    }
+
     render() {
         return (
             <div className="SongListItem">
                 <div>
-                    <img src={TESTSongArt} className="songArt" alt="Song Art" />
-                    <div className="songLength">
-                        {this.props.song.songLength}
-                    </div>
+
+                    <button className="Song-Item-Play-Btn" onClick={this.handlePlay}>
+                        <img src={TESTSongArt} className="songArt" alt="Song Art" />
+                        {this.props.song.songLength} &#9654;
+                    </button>
                 </div>
-                
+
                 <div className="songListItemRight">
                     <div className="songHeader">
-                        <div className="artistName">
-                            {this.props.song.artist}
-                        </div>
-                        <div className="songName">
-                            {this.props.song.songName}
+                        <div>
+                            <div className="artistName">
+                                {this.props.song.artist}
+                            </div>
+                            <div className="songName">
+                                {this.props.song.songName}
+                            </div>
                         </div>
                         <div className="recordingDate">
                             {new Intl.DateTimeFormat('en-GB', {
@@ -45,7 +48,6 @@ class SongListItem extends Component {
                     <div className="songInfo">
                         {this.props.song.info}
                     </div>
-                    <button className="Song-Item-Play-Btn" onClick={this.handlePlay}>&#9654;</button>
                 </div>
             </div>
         );

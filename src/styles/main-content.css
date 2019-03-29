@@ -51,6 +51,7 @@
     flex-direction: row;
     margin: 6px;
     padding: 7px;
+    max-height: 30vh;
     background-color: #317d92;
     color: rgb(15, 15, 14);
     text-align: left;
@@ -66,14 +67,12 @@
 
 .songName {
     color: rgb(17, 17, 16);
-    font-size: calc(12px + 2vmin);
+    font-size: calc(8px + 2vmin);
     font-weight: bolder;
-    flex: 1;
 }
 
 .artistName {
-    flex: 1;
-    font-size: calc(12px + 2vmin);
+    font-size: calc(8px + 2vmin);
     font-weight: bold;
 }
 
@@ -90,11 +89,13 @@
 .songInfo {
     border-radius: 15px;
     width: 100%;
-    height: 75px;
     flex: 1;
     background-color: rgb(203, 203, 211);
+    max-height: 17.5vh;
+    overflow-y: hidden;
+    font-size: .9em;
     padding: .2em;
-    color: rgb(51, 53, 46);
+    color: rgb(36, 39, 29);
 }
 
 .songArt {
@@ -165,6 +166,7 @@
 .PublishSongListItem {
     display: flex;
     flex-direction: row;
+    max-height: 133px;
     margin: 6px;
     padding: 4px;
     background-color: #7d9ea5;
@@ -176,6 +178,31 @@
     height: 100%;
     width: 88px;
     font-size: .4em;
+    font-weight: bold;
+}
+
+.PublishSong-publish-button:hover {
+    background-color: rgb(150, 224, 150);
+}
+
+.PublishSong-publish-button:active {
+    background-color: rgb(164, 236, 164);
+}
+
+.PublishSong-unpublish-button {
+    background-color: rgb(128, 202, 161);
+    height: 100%;
+    width: 88px;
+    font-size: .4em;
+    font-weight: bold;
+}
+
+.PublishSong-unpublish-button:hover {
+    background-color: rgb(218, 77, 58);
+}
+
+.PublishSong-unpublish-button:active {
+    background-color: rgb(236, 58, 34);
 }
 
 .PublishSongArt {
