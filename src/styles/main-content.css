@@ -111,21 +111,21 @@
     padding: .4em;
 }
 
-/* MySongWall */
-#MySongs-List {
+/* PublishSongWall */
+#PublishSongs-List {
     width: inherit;
     height: calc(100vh - 144px);
     flex-direction: column;
     overflow-y: scroll;
 }
 
-#MySongWall-Add-Song-Btns {
+#PublishSongWall-Add-Song-Btns {
     display: flex;
     justify-content: flex-end;
     height: 44px;
 }
 
-#MySongWall-Upload-Btn {
+#PublishSongWall-Upload-Btn {
     border-radius: 15px;
     background: #49b2e6;
     font-size: 18px;
@@ -135,15 +135,15 @@
     margin: 6px;
 }
 
-#MySongWall-Upload-Btn:hover {
+#PublishSongWall-Upload-Btn:hover {
     background: #60c0f0;
 }
 
-#MySongWall-Upload-Btn:active {
+#PublishSongWall-Upload-Btn:active {
     background: rgb(125, 207, 248);
 }
 
-#MySongWall-Record-Btn {
+#PublishSongWall-Record-Btn {
     border-radius: 15px;
     background: #da382d;
     font-size: 18px;
@@ -153,16 +153,16 @@
     margin: 6px;
 }
 
-#MySongWall-Record-Btn:hover {
+#PublishSongWall-Record-Btn:hover {
     background: #f75d52;
 }
 
-#MySongWall-Record-Btn:active {
+#PublishSongWall-Record-Btn:active {
     background: #ff7b71;
 }
 
-/* MySongWall ListItem */
-.MySongListItem {
+/* PublishSongWall ListItem */
+.PublishSongListItem {
     display: flex;
     flex-direction: row;
     margin: 6px;
@@ -172,12 +172,50 @@
     text-align: left;
 }
 
-.MySong-publish-button {
+.PublishSong-publish-button {
     height: 100%;
+    width: 88px;
+    font-size: .4em;
 }
 
-.MySongArt {
-    max-height: 13vh;
+.PublishSongArt {
+    max-height: 124px;
+}
+
+.PublishSongName {
+    color: rgb(17, 17, 16);
+    font-size: calc(12px + 2vmin);
+    font-weight: bolder;
+    flex: 1;
+    font-size: .7em;
+}
+
+.PublishSongArtistName {
+    flex: 1;
+    font-size: calc(12px + 2vmin);
+    font-weight: bold;
+    font-size: .7em;
+}
+
+.PublishSongRecordingDate {
+    flex: 1;
+    text-align: right;
+    font-style: italic;
+    font-size: .6em;
+}
+
+.PublishSongLength {
+    text-align: center;
+}
+
+.PublishSongInfo {
+    border-radius: 15px;
+    width: 100%;
+    flex: 1;
+    background-color: rgb(203, 203, 211);
+    padding: .2em;
+    font-size: .7em;
+    color: rgb(51, 53, 46);
 }
 
 /* Auth */

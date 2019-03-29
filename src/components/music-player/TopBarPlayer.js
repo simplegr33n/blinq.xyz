@@ -6,7 +6,7 @@ class TopBarPlayer extends Component {
 	constructor(props) {
 		super(props);
 		this.state = {
-			song: {},
+			song: null,
 			fillPosition: "0%"
 		};
 
@@ -16,23 +16,30 @@ class TopBarPlayer extends Component {
 
 			this.setState({ fillPosition: position * 100 + '%' });
 		});
+		this.url = null;
 	}
 
-	componentWillReceiveProps(props) {
-		console.log("topbarplayer: will receive props" + props + "this.props.song:" + this.props.song)
-		if (this.props.song === null || this.props.song === undefined) {
-			return;
+
+	componentDidUpdate(props) {
+		console.log(props)
+		console.log("update?" + props + this.state.song)
+
+		if (props.song != null && this.state.song !== props.song) {
+			this.setState({ song: props.song });
+			console.log("update url?" + props.song.url)
+			this.url = props.song.url
+			this.playFromProps();
 		}
+	}
 
-		console.log("topbarplayer: " + this.props.song)
-
-		if (this.props.song !== this.state.song) {
-			this.setState({
-				song: this.props.song
-			});
+	playFromProps = () => {
+		console.log("p from props" + this.props.song.url)
+		if (this.url !== this.props.song.url) {
+			this.url = this.props.song.url;
 			this.audioPlayer.src = this.props.song.url;
+			console.log("plyr src" + this.audioPlayer.src)
 			this.audioPlayer.play();
-		}
+		} 
 	}
 
 	handlePlayOrPause = () => {

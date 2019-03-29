@@ -50,23 +50,19 @@ class PublishListItem extends Component {
 
     render() {
         return (
-            <div className="MySongListItem">
-                <div>
-                    <img src={TESTSongArt} className="MySongArt" alt="Song Art" />
-                    <div className="songLength">
-                        {this.props.song.songLength}
-                    </div>
-                </div>
-
+            <div className="PublishSongListItem">
+            
+                    <img src={TESTSongArt} className="PublishSongArt" alt="Song Art" />
+          
                 <div className="songListItemRight">
                     <div className="songHeader">
-                        <div className="artistName">
+                        <div className="PublishSongArtistName">
                             {this.props.song.artist}
                         </div>
-                        <div className="songName">
+                        <div className="PublishSongName">
                             {this.props.song.songName}
                         </div>
-                        <div className="recordingDate">
+                        <div className="PublishSongRecordingDate">
                             {new Intl.DateTimeFormat('en-GB', {
                                 year: 'numeric',
                                 month: 'long',
@@ -74,19 +70,22 @@ class PublishListItem extends Component {
                             }).format(this.props.song.recorded)}
                         </div>
                     </div>
-                    <div className="songInfo">
+                    <div className="PublishSongInfo">
                         {this.props.song.info}
+                    </div>
+                    <div className="PublishSongLength">
+                        {this.props.song.songLength}
                     </div>
                 </div>
                 <div>
                     {(() => {
 								if (this.props.song.published) {
 									return (
-										<button className="MySong-publish-button" onClick={this.handlePublishPressed}>UNPUBLISH</button>
+										<button className="PublishSong-publish-button" onClick={this.handlePublishPressed}>UNPUBLISH</button>
 									);
 								} else {
                                     return (
-										<button className="MySong-publish-button" onClick={this.handlePublishPressed}>PUBLISH</button>
+										<button className="PublishSong-publish-button" onClick={this.handlePublishPressed}>PUBLISH</button>
 									);
                                 }
 							})()}

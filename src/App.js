@@ -43,7 +43,7 @@ class App extends Component {
 	}
 
 	getUsername = () => {
-		// Users location in tree
+		// Get user's Username from database
 		var ref = this.firebase.db.ref().child('users').child(this.state.UID)
 
 		ref.on("value", (snapshot) => {
@@ -73,13 +73,10 @@ class App extends Component {
 	}
 
 	handleSetSong = (setValue) => {
-		console.log("handle dat set song " + setValue.url)
+		this.setState({
+			currentSong: setValue
+		});
 
-		if (this.state.currentSong !== setValue) {
-			this.setState({
-				currentSong: setValue
-			});
-		}
 	}
 
 	setMainContent = (setValue) => {
@@ -127,7 +124,7 @@ class App extends Component {
 							{(() => {
 								if (this.state.UID) {
 									return (
-										<TopBarPlayer song={this.state.currentSong}/>
+										<TopBarPlayer song={this.state.currentSong} />
 									);
 								}
 							})()}
