@@ -1,0 +1,15 @@
+/* Music Player */
+#Top-Bar-Player {
+    display: flex;
+    flex-direction: column;
+    width: 300px;
+    padding: 16px;
+    background-color: #224d58;
+    flex-grow: 1;
+}
+
+#Top-Player-Info-Div {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+}

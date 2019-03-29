@@ -12,8 +12,11 @@ import SignUp from './components/auth/SignUp.js'
 // Main Content
 import PostSong from './components/main-content/PostSong.js'
 import SongWall from './components/main-content/SongWall.js'
-import MySongWall from './components/main-content/MySongWall.js'
+import Studio from './components/main-content/Studio.js'
 import EditProfile from './components/main-content/EditProfile.js'
+
+// Music Player
+import TopBarPlayer from './components/music-player/TopBarPlayer.js'
 
 
 class App extends Component {
@@ -21,7 +24,7 @@ class App extends Component {
 	constructor(props) {
 		super(props);
 		this.state = {
-			mainContent: 'signin', // signin, signup, postsong, songwall, mysongs, editprofile, record, etc.
+			mainContent: 'signin', // signin, signup, postsong, songwall, studio, editprofile, record, etc.
 			UID: null,
 			username: ''
 		};
@@ -43,9 +46,9 @@ class App extends Component {
 
 		ref.on("value", (snapshot) => {
 			this.setState({ username: snapshot.val().username });
-		  }, function (errorObject) {
+		}, function (errorObject) {
 			console.log("The read failed: " + errorObject.code);
-		  });
+		});
 
 	}
 
@@ -83,9 +86,9 @@ class App extends Component {
 		}
 	}
 
-	openMySongs = () => {
-		if (this.state.mainContent !== 'mysongs') {
-			this.setState({ mainContent: 'mysongs' });
+	openStudio = () => {
+		if (this.state.mainContent !== 'studio') {
+			this.setState({ mainContent: 'studio' });
 		}
 	}
 
@@ -102,16 +105,8 @@ class App extends Component {
 				<header className="App-body">
 					<div id="App-Inner-Body">
 						<div id="App-Header">
-							{(() => {
-								if (this.state.UID) {
-									return (
-										<div id="Header-Btns">
-											<button id="Profile-Btn" onClick={this.openEditProfile}>Profile</button>
-											<button id="Logout-Btn" onClick={this.handleSignOut}>Logout</button>
-										</div>
-									);
-								}
-							})()}
+							<div className="spacer-240w" />
+							<TopBarPlayer />
 						</div>
 						<div id="App-Body-Content">
 							<div id="Main-Left">
@@ -122,8 +117,12 @@ class App extends Component {
 									if (this.state.UID) {
 										return (
 											<div id="Main-Left-Menu">
+												<div id="Header-Btns">
+													<button id="Profile-Btn" onClick={this.openEditProfile}>Profile</button>
+													<button id="Logout-Btn" onClick={this.handleSignOut}>Logout</button>
+												</div>
 												<button className="Left-Menu-Btn" onClick={this.openSongWall}>Song Wall</button>
-												<button className="Left-Menu-Btn" onClick={this.openMySongs}>My Songs</button>
+												<button className="Left-Menu-Btn" onClick={this.openStudio}>Studio</button>
 												<button className="Left-Menu-Btn" onClick={this.openPostSong}>Upload Song</button>
 											</div>
 										);
@@ -136,8 +135,8 @@ class App extends Component {
 										switch (this.state.mainContent) {
 											case 'songwall':
 												return <SongWall />;
-											case 'mysongs':
-												return <MySongWall UID={this.state.UID} />;
+											case 'studio':
+												return <Studio UID={this.state.UID} />;
 											case 'postsong':
 												return <PostSong UID={this.state.UID} username={this.state.username} />;
 											case 'editprofile':

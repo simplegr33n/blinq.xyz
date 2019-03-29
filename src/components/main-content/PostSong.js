@@ -73,6 +73,9 @@ class PostSong extends Component {
         return (
             <div id="submit-song-box">
                 <div>
+                    /.../.../filename.mp3
+                </div>
+                <div>
                     Song Name:
                         <textarea id="song-name-area" value={this.state.songName} onChange={this.handleSongNameChange} />
                 </div>

@@ -34,7 +34,9 @@
 }
 
 #Header-Btns {
-  height: 60%;
+  margin-bottom: 2px;
+  display: flex;
+  justify-content: flex-end;
 }
 
 #Home-Div {
@@ -94,14 +96,14 @@
 }
 
 #Profile-Btn {
-  background: #2d92ac;
+  background: #466c75;
   font-size: 18px;
   font-weight: bold;
   border: none;
   text-align: center;
   width: 80px;
   height: 100%;
-  margin-right: 4px;
+  margin-left: 4px;
 }
 
 #Profile-Btn:active {
@@ -113,14 +115,14 @@
 }
 
 #Logout-Btn {
-  background: #2d92ac;
+  background: #466c75;
   font-size: 18px;
   font-weight: bold;
   border: none;
   text-align: center;
   width: 80px;
   height: 100%;
-  margin-right: 4px;
+  margin-left: 4px;
 }
 
 #Logout-Btn:active {
@@ -140,4 +142,9 @@
 
 .App-link {
   color: #61dafb;
+}
+
+
+.spacer-240w {
+  width: 240px;
 }
