@@ -106,13 +106,19 @@ class App extends Component {
 					<div id="App-Inner-Body">
 						<div id="App-Header">
 							<div className="spacer-240w" />
-							<TopBarPlayer />
+							{(() => {
+								if (this.state.UID) {
+									return (
+										<TopBarPlayer />
+									);
+								}
+							})()}
 						</div>
 						<div id="App-Body-Content">
 							<div id="Main-Left">
-								<div id="Home-Div">
+								<button id="Home-Div" onClick={this.openSongWall}>
 									<img src={cornerLogo} className="Muslinq-logo" alt="muslinq-logo" />
-								</div>
+								</button>
 								{(() => {
 									if (this.state.UID) {
 										return (
@@ -121,9 +127,15 @@ class App extends Component {
 													<button id="Profile-Btn" onClick={this.openEditProfile}>Profile</button>
 													<button id="Logout-Btn" onClick={this.handleSignOut}>Logout</button>
 												</div>
-												<button className="Left-Menu-Btn" onClick={this.openSongWall}>Song Wall</button>
+												<div id="Search-Div">
+													<input id="Search-Input" />
+													<button id="Search-Btn" onClick={this.handleSignOut}>
+														<div id="mag-glass">
+															&#9906;
+														</div>
+													</button>
+												</div>
 												<button className="Left-Menu-Btn" onClick={this.openStudio}>Studio</button>
-												<button className="Left-Menu-Btn" onClick={this.openPostSong}>Upload Song</button>
 											</div>
 										);
 									}
@@ -136,7 +148,7 @@ class App extends Component {
 											case 'songwall':
 												return <SongWall />;
 											case 'studio':
-												return <Studio UID={this.state.UID} />;
+												return <Studio UID={this.state.UID} gotoPostSong={this.setMainContent} />;
 											case 'postsong':
 												return <PostSong UID={this.state.UID} username={this.state.username} />;
 											case 'editprofile':

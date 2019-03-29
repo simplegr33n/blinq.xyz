@@ -1,4 +1,5 @@
 /* App's static wrapper */
+
 .App {
   text-align: center;
 }
@@ -36,12 +37,28 @@
 #Header-Btns {
   margin-bottom: 2px;
   display: flex;
+  justify-content: flex-start;
+}
+
+#Search-Div {
+  margin: 2px;
+  display: flex;
   justify-content: flex-end;
 }
 
 #Home-Div {
   height: 100px;
+  min-height: 100px;
+  border: none;
   background-color: #317d92;
+}
+
+#Home-Div:hover {
+  background-color: #319285;
+}
+
+#Home-Div:active {
+  background-color: #14a367;
 }
 
 #App-Body-Content {
@@ -64,7 +81,6 @@
   z-index: 1;
   top: 0;
   left: 0;
-  background-color: rgb(31, 30, 30);
   overflow-x: hidden;
 }
 
@@ -74,7 +90,7 @@
   height: 100%;
   width: 240px;
   z-index: 1;
-  background-color: rgb(31, 30, 30);
+  background-color: #317d92;
   overflow-x: hidden;
 }
 
@@ -84,7 +100,7 @@
   font-weight: bold;
   border: none;
   height: 67px;
-  margin-bottom: 2px;
+  margin: 2px;
 }
 
 .Left-Menu-Btn:hover {
@@ -97,13 +113,13 @@
 
 #Profile-Btn {
   background: #466c75;
-  font-size: 18px;
+  font-size: 1em;
   font-weight: bold;
+  flex-grow: 1;
   border: none;
   text-align: center;
-  width: 80px;
   height: 100%;
-  margin-left: 4px;
+  margin: 2px;
 }
 
 #Profile-Btn:active {
@@ -116,13 +132,13 @@
 
 #Logout-Btn {
   background: #466c75;
-  font-size: 18px;
+  font-size: 1em;
   font-weight: bold;
+  flex-grow: 1;
   border: none;
   text-align: center;
-  width: 80px;
   height: 100%;
-  margin-left: 4px;
+  margin: 2px;
 }
 
 #Logout-Btn:active {
@@ -133,6 +149,38 @@
   background: #276c7e;
 }
 
+#Search-Btn {
+  background: #466c75;
+  font-size: 1.5em;
+  font-weight: bold;
+  border: none;
+  text-align: center;
+  width: 80px;
+  height: 100%;
+  margin-left: 2px;
+}
+
+#mag-glass {
+    /* rotate the character */
+    -webkit-transform: rotate(45deg);
+    -moz-transform: rotate(45deg);
+    -o-transform: rotate(45deg);
+    transform: rotate(45deg);
+}
+
+#Search-Btn:active {
+  background: #90bfe6;
+}
+
+#Search-Btn:hover {
+  background: #276c7e;
+}
+
+#Search-Input {
+  font-size: 1em;
+  flex-grow: 1;
+  max-height: 100%;
+}
 
 #Main-Content {
   display: flex;
@@ -143,7 +191,6 @@
 .App-link {
   color: #61dafb;
 }
-
 
 .spacer-240w {
   width: 240px;

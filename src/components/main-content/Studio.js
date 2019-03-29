@@ -18,6 +18,10 @@ class Studio extends Component {
 		this.getSongs()
 	}
 
+	handleUpload = () => {
+		this.props.gotoPostSong("postsong");
+	}
+
 	getSongs = () => {
 		// Posts branch of tree
 		var ref = this.firebase.db.ref().child('user-songs').child(this.state.UID);
@@ -46,7 +50,7 @@ class Studio extends Component {
 		return (
 			<div>
 				<div id="MySongWall-Add-Song-Btns">
-					<button id="MySongWall-Upload-Btn">Upload File</button>
+					<button id="MySongWall-Upload-Btn" onClick={this.handleUpload}>Upload File</button>
 					<button id="MySongWall-Record-Btn">Record Song</button>
 				</div>
 				<div id="MySongs-List">
