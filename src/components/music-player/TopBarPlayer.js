@@ -11,35 +11,24 @@ class TopBarPlayer extends Component {
 		};
 
 		this.audioPlayer = new Audio();
+		this.audioPlayer.loop = false;
 		this.audioPlayer.addEventListener('timeupdate', () => {
 			var position = this.audioPlayer.currentTime / this.audioPlayer.duration;
-
 			this.setState({ fillPosition: position * 100 + '%' });
 		});
-		this.url = null;
 	}
 
-
-	componentDidUpdate(props) {
-		console.log(props)
-		console.log("update?" + props + this.state.song)
-
-		if (props.song != null && this.state.song !== props.song) {
-			this.setState({ song: props.song });
-			console.log("update url?" + props.song.url)
-			this.url = props.song.url
-			this.playFromProps();
+	componentWillUpdate(props) {
+		if (props.song === null || props.song.url === undefined) {
+			return;
 		}
-	}
+		if (this.state.song !== null && props.song.id === this.state.song.id) {
+			return;
+		}
 
-	playFromProps = () => {
-		console.log("p from props" + this.props.song.url)
-		if (this.url !== this.props.song.url) {
-			this.url = this.props.song.url;
-			this.audioPlayer.src = this.props.song.url;
-			console.log("plyr src" + this.audioPlayer.src)
-			this.audioPlayer.play();
-		} 
+		this.setState({ song: props.song });
+		this.audioPlayer.src = props.song.url;
+		this.audioPlayer.play();
 	}
 
 	handlePlayOrPause = () => {

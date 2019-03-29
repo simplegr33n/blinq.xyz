@@ -73,10 +73,16 @@ class App extends Component {
 	}
 
 	handleSetSong = (setValue) => {
-		this.setState({
-			currentSong: setValue
-		});
-
+		console.log("handle setsong: " + setValue)
+		if (this.state.currentSong !== null && setValue.url !== this.state.currentSong.url) {
+			this.setState({
+				currentSong: setValue
+			});
+		} else if (this.state.currentSong == null) {
+			this.setState({
+				currentSong: setValue
+			});
+		}
 	}
 
 	setMainContent = (setValue) => {
