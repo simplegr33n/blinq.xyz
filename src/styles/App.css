@@ -113,7 +113,7 @@
 
 #Profile-Btn {
   background: #466c75;
-  font-size: 1em;
+  font-size: .7em;
   font-weight: bold;
   flex-grow: 1;
   border: none;
@@ -132,7 +132,7 @@
 
 #Logout-Btn {
   background: #466c75;
-  font-size: 1em;
+  font-size: .7em;
   font-weight: bold;
   flex-grow: 1;
   border: none;

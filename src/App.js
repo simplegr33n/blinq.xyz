@@ -10,9 +10,10 @@ import SignIn from './components/auth/SignIn.js'
 import SignUp from './components/auth/SignUp.js'
 
 // Main Content
-import PostSong from './components/main-content/PostSong.js'
 import SongWall from './components/main-content/SongWall.js'
 import Studio from './components/main-content/Studio.js'
+import RecordSong from './components/main-content/RecordSong.js'
+import PostSong from './components/main-content/PostSong.js'
 import EditProfile from './components/main-content/EditProfile.js'
 
 // Music Player
@@ -92,6 +93,12 @@ class App extends Component {
 		}
 	}
 
+	openRecord = () => {
+		if (this.state.mainContent !== 'record') {
+			this.setState({ mainContent: 'record' });
+		}
+	}
+
 	openEditProfile = () => {
 		if (this.state.mainContent !== 'editprofile') {
 			this.setState({ mainContent: 'editprofile' });
@@ -148,9 +155,11 @@ class App extends Component {
 											case 'songwall':
 												return <SongWall />;
 											case 'studio':
-												return <Studio UID={this.state.UID} gotoPostSong={this.setMainContent} />;
+												return <Studio UID={this.state.UID} goto={this.setMainContent} />;
 											case 'postsong':
 												return <PostSong UID={this.state.UID} username={this.state.username} />;
+											case 'record':
+												return <RecordSong UID={this.state.UID} username={this.state.username} />;
 											case 'editprofile':
 												return <EditProfile UID={this.state.UID} username={this.state.username} />;
 											default:

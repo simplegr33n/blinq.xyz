@@ -5,8 +5,12 @@
     width: 300px;
     padding: 16px;
     background-color: #1a47342a;
+    border-radius: 15px;
+    max-height: 86px;
+    margin: 16px;
     align-items: center;
     flex-grow: 1;
+    font-size: .8em;
 }
 
 #Top-Player-Info-Div {

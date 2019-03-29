@@ -19,7 +19,11 @@ class Studio extends Component {
 	}
 
 	handleUpload = () => {
-		this.props.gotoPostSong("postsong");
+		this.props.goto("postsong");
+	}
+
+	handleRecord = () => {
+		this.props.goto("record");
 	}
 
 	getSongs = () => {
@@ -51,7 +55,7 @@ class Studio extends Component {
 			<div>
 				<div id="MySongWall-Add-Song-Btns">
 					<button id="MySongWall-Upload-Btn" onClick={this.handleUpload}>Upload File</button>
-					<button id="MySongWall-Record-Btn">Record Song</button>
+					<button id="MySongWall-Record-Btn" onClick={this.handleRecord}>Record Song</button>
 				</div>
 				<div id="MySongs-List">
 					{this.state.songs.map((s) => (<MySongListItem song={s} />))}

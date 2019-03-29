@@ -45,10 +45,11 @@
 
 /* SongWall ListItem */
 .SongListItem {
+    border-radius: 15px;
     display: flex;
     flex-direction: row;
     margin: 6px;
-    padding: 4px;
+    padding: 7px;
     background-color: rgb(233, 243, 245);
     color: rgb(15, 15, 14);
     text-align: left;
