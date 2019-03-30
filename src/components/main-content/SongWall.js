@@ -51,7 +51,7 @@ class SongWall extends Component {
 	render() {
 		return (
 			<div id="Songs-List">
-				{this.state.songs.map((s) => (<SongListItem song={s} setSong={this.handleSetSong}/>))}
+				{this.state.songs.map((song) => (<SongListItem song={song} key={song.id} setSong={this.handleSetSong}/>))}
 			</div>
 		);
 	}
