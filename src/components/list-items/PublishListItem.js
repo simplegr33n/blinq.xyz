@@ -15,6 +15,11 @@ class PublishListItem extends Component {
         this.firebase = new Firebase()
     }
 
+    handlePlay = () => {
+        // pass song to Studio fragment, which will pass on to App
+        this.props.playSong(this.props.song);
+    }
+
     handlePublishPressed = () => {
         let pubSong = this.props.song;
 
@@ -55,7 +60,12 @@ class PublishListItem extends Component {
         return (
             <div className="PublishSongListItem">
 
-                <img src={TESTSongArt} className="PublishSongArt" alt="Song Art" />
+                <div>
+                    <button className="Publish-Song-Play-Btn" onClick={this.handlePlay}>
+                        <img src={TESTSongArt} className="PublishSongArt" alt="Song Art" />
+                        {this.props.song.songLength} &#9654;
+                    </button>
+                </div>
 
                 <div className="songListItemRight">
                     <div className="songHeader">

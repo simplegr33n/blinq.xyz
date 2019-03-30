@@ -53,7 +53,7 @@ class PostSong extends Component {
         var storageRef = this.firebase.storage.ref().child('songs');
         const file = document.querySelector('#uploadAudioInput').files[0];
         const metadata = { contentType: file.type };
-        const storageTask = storageRef.child(newPostKey).child(songname + ".mp3").put(file, metadata);
+        const storageTask = storageRef.child(this.props.UID).child(newPostKey).child(songname + ".mp3").put(file, metadata);
         let songData;
         storageTask
             .then(snapshot => snapshot.ref.getDownloadURL())
@@ -87,7 +87,6 @@ class PostSong extends Component {
         return (
             <div id="submit-song-box">
                 <div>
-                    Zip File:
                     <input
                         accept=".mp3,.mp4,.wmv"
                         type="file"

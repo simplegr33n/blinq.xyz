@@ -190,7 +190,7 @@ class App extends Component {
 											case 'songwall':
 												return <SongWall setSong={this.handleSetSong} />;
 											case 'studio':
-												return <Studio UID={this.state.UID} goto={this.setMainContent} />;
+												return <Studio UID={this.state.UID} goto={this.setMainContent} playSong={this.handleSetSong} />;
 											case 'postsong':
 												return <PostSong UID={this.state.UID} username={this.state.username} />;
 											case 'record':

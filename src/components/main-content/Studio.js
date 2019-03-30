@@ -26,6 +26,11 @@ class Studio extends Component {
 		this.props.goto("record");
 	}
 
+	handlePlaySong = (setValue) => {
+		// set song in App.js
+		this.props.playSong(setValue);
+	}
+
 	getSongs = () => {
 		// Posts branch of tree
 		var ref = this.firebase.db.ref().child('user-songs').child(this.state.UID);
@@ -59,7 +64,7 @@ class Studio extends Component {
 					<button id="Studio-Record-Btn" onClick={this.handleRecord}>Record Song</button>
 				</div>
 				<div id="Studio-Songs-List">
-					{this.state.songs.map((s) => (<PublishListItem song={s} />))}
+					{this.state.songs.map((s) => (<PublishListItem song={s} playSong={this.handlePlaySong}/>))}
 				</div>
 			</div>
 

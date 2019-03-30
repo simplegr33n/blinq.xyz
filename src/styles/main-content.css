@@ -67,12 +67,12 @@
 
 .songName {
     color: rgb(17, 17, 16);
-    font-size: calc(8px + 2vmin);
+    font-size: .7em;
     font-weight: bolder;
 }
 
 .artistName {
-    font-size: calc(8px + 2vmin);
+    font-size: .65em;
     font-weight: bold;
 }
 
@@ -80,6 +80,7 @@
     flex: 1;
     text-align: right;
     font-style: italic;
+    font-size: calc(6px + 2vmin);
 }
 
 .songLength {
@@ -93,7 +94,7 @@
     background-color: rgb(203, 203, 211);
     max-height: 17.5vh;
     overflow-y: hidden;
-    font-size: .9em;
+    font-size: .7em;
     padding: .2em;
     color: rgb(36, 39, 29);
 }
@@ -107,9 +108,13 @@
     border-radius: 15px;
 }
 
+.Publish-Song-Play-Btn {
+
+}
+
 .songListItemRight {
     width: 100%;
-    padding: .4em;
+    padding: 4px;
 }
 
 /* PublishSongWall */
@@ -168,7 +173,8 @@
     flex-direction: row;
     max-height: 133px;
     margin: 6px;
-    padding: 4px;
+    overflow-y: hidden;
+    padding: 3px;
     background-color: #7d9ea5;
     color: rgb(15, 15, 14);
     text-align: left;
@@ -179,6 +185,7 @@
     width: 88px;
     font-size: .4em;
     font-weight: bold;
+    margin-left: 4px;
 }
 
 .PublishSong-publish-button:hover {
@@ -195,6 +202,7 @@
     width: 88px;
     font-size: .4em;
     font-weight: bold;
+    margin-left: 4px;
 }
 
 .PublishSong-unpublish-button:hover {
@@ -206,7 +214,7 @@
 }
 
 .PublishSongArt {
-    max-height: 124px;
+    max-height: 108px;
 }
 
 .PublishSongName {
@@ -238,10 +246,12 @@
 .PublishSongInfo {
     border-radius: 15px;
     width: 100%;
-    flex: 1;
+    max-height: 73px;
+    overflow-y: hidden;
+    flex: 1 1;
     background-color: rgb(203, 203, 211);
     padding: .2em;
-    font-size: .7em;
+    font-size: .65em;
     color: rgb(51, 53, 46);
 }
 

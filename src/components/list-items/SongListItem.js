@@ -20,7 +20,6 @@ class SongListItem extends Component {
         return (
             <div className="SongListItem">
                 <div>
-
                     <button className="Song-Item-Play-Btn" onClick={this.handlePlay}>
                         <img src={TESTSongArt} className="songArt" alt="Song Art" />
                         {this.props.song.songLength} &#9654;
@@ -30,11 +29,11 @@ class SongListItem extends Component {
                 <div className="songListItemRight">
                     <div className="songHeader">
                         <div>
-                            <div className="artistName">
-                                {this.props.song.artist}
-                            </div>
                             <div className="songName">
                                 {this.props.song.songName}
+                            </div>
+                            <div className="artistName">
+                                <i>by</i> {" " + this.props.song.artist}
                             </div>
                         </div>
                         <div className="recordingDate">
