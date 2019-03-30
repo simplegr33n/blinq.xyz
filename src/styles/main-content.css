@@ -259,16 +259,18 @@
 
 #signin-div {
     background-color: #94bbce;
-    margin: 6px;
     padding: 16px;
     color: #1d1b1b;
+    padding-bottom: 32px;
+    margin-top: 3vh;
 }
 
 #signup-div {
     background-color: #8acea6;
-    margin: 6px;
     padding: 16px;
     color: #1d1b1b;
+    padding-bottom: 32px;
+    margin-top: 3vh;
 }
 
 #signin-username {}

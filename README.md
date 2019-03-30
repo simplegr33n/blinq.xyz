@@ -1,4 +1,4 @@
-﻿# Müslinq
+﻿# blinq
 
 ## Available Scripts
 

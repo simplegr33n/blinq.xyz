@@ -1,16 +1,13 @@
 /* App's static wrapper */
-
 .App {
   text-align: center;
 }
 
-.Muslinq-logo {
+.Blinq-logo {
   pointer-events: none;
-  width: auto;
-  height: 100%;
-  background-size: cover;
-  background-repeat: no-repeat;
-  background-position: center;
+  max-height: 100px;
+  height: 100px;
+  width: 100px;
 }
 
 .App-body {
@@ -52,11 +49,12 @@
   height: 100px;
   min-height: 100px;
   border: none;
-  background-color: #317d92;
+  padding: 0;
+  background-color: #3c342e;
 }
 
 #Home-Div:hover {
-  background-color: #4390a5;
+  background-color: #e27522;
 }
 
 

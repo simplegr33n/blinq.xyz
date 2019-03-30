@@ -3,7 +3,8 @@ import './styles/App.css';
 import Firebase from './config/firebaseConfig.js'
 
 // Assets
-import cornerLogo from './assets/corner-logo.png'
+import cornerLogo from './assets/corner-logo-blinq.png'
+
 
 // Auth
 import SignIn from './components/auth/SignIn.js'
@@ -162,7 +163,7 @@ class App extends Component {
 						<div id="App-Body-Content">
 							<div id="Main-Left">
 								<button id="Home-Div" onClick={this.openSongWall}>
-									<img src={cornerLogo} className="Muslinq-logo" alt="muslinq-logo" />
+									<img src={cornerLogo} className="Blinq-logo" alt="Blinq logo" />
 								</button>
 								{(() => {
 									if (this.state.UID) {
