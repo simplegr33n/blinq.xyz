@@ -8,6 +8,7 @@ import cornerLogo from './assets/corner-logo.png'
 // Auth
 import SignIn from './components/auth/SignIn.js'
 import SignUp from './components/auth/SignUp.js'
+import ChangePassword from './components/auth/ChangePassword.js'
 
 // Main Content
 import SongWall from './components/main-content/SongWall.js'
@@ -26,7 +27,7 @@ class App extends Component {
 	constructor(props) {
 		super(props);
 		this.state = {
-			mainContent: 'signin', // signin, signup, postsong, songwall, studio, profile, editprofile, record, etc.
+			mainContent: 'signin', // signin, signup, postsong, songwall, studio, profile, editprofile, changepw, record, etc.
 			UID: null,
 			username: '',
 			currentSong: null, // for playing... TODO://also need something for songpage viewing
@@ -37,7 +38,10 @@ class App extends Component {
 		this.firebase.auth.onAuthStateChanged((user) => {
 			if (user) {
 				console.log(`UID: ${user.uid}`);
-				this.setState({ UID: user.uid });
+				this.setState({ 
+					UID: user.uid,
+					email: user.email 
+				});
 				this.getUsername();
 			}
 		});
@@ -49,10 +53,10 @@ class App extends Component {
 		var ref = this.firebase.db.ref().child('users').child(this.state.UID)
 
 		ref.on("value", (snapshot) => {
-			this.setState({ 
+			this.setState({
 				user: snapshot.val(),
 				username: snapshot.val().username // probably just need to set user in state
-			 });
+			});
 		}, function (errorObject) {
 			console.log("The read failed: " + errorObject.code);
 		});
@@ -196,7 +200,9 @@ class App extends Component {
 											case 'record':
 												return <RecordSong UID={this.state.UID} username={this.state.username} />;
 											case 'editprofile':
-												return <EditProfile user={this.state.user} gotoProfile={this.gotoProfile} />;
+												return <EditProfile user={this.state.user} gotoProfile={this.gotoProfile} goto={this.setMainContent} />;
+											case 'changepw':
+												return <ChangePassword email={this.state.email} />;
 											case 'profile':
 												return <Profile user={this.state.user} />;
 											default:

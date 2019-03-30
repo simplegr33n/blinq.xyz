@@ -16,8 +16,8 @@ class EditProfile extends Component {
     }
 
     gotoPublicProfile = () => {
-		this.props.gotoProfile(this.state.user.uid);
-	}
+        this.props.gotoProfile(this.state.user.uid);
+    }
 
     handleUsernameChange = (event) => {
         this.setState({ username: event.target.value });
@@ -25,6 +25,11 @@ class EditProfile extends Component {
 
     handleSubmit = () => {
         // TODO
+    }
+
+    handleChangePassword = () => {
+        // TODO
+        this.props.goto("changepw")
     }
 
 
@@ -39,8 +44,7 @@ class EditProfile extends Component {
                         <input id="edit-username-area" value={this.props.user.username} onChange={this.handleUsernameChange} />
                 </div>
                 <div>
-                    Change Password:
-                        <input type="password" id="edit-password-area" />
+                    <button onClick={this.handleChangePassword}>Change Password</button>
                 </div>
                 <button id="post-button" onClick={this.handleSubmit}>
                     Submit Changes

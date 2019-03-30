@@ -49,22 +49,9 @@ class TopBarPlayer extends Component {
 	}
 
 	handleSeekBarClick = (e) => {
-
-		console.log("os" + e.target.offsetLeft);
-		// console.log("width" + e.width);
-		console.log("width" + this.seekBar.current.offsetWidth);
-		console.log("pagex" + e.pageX);
-
 		let seekRatio = (e.pageX - e.target.offsetLeft) / this.seekBar.current.offsetWidth
-		console.log("pctage" + seekRatio);
 
 		this.audioPlayer.currentTime = (this.audioPlayer.duration * seekRatio)
-
-		// console.log(e)
-		// console.log("offset" + e.offset)
-		// console.log(e.pageX + " " + e.pageY)
-
-
 	}
 
 	render() {

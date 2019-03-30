@@ -107,9 +107,9 @@ class SignIn extends Component {
                     <div>
                         <button id="submit-signin-btn" onClick={this.handleSubmit} > Sign in! </button>
                     </div>
-                    <div>
+                    {/* <div>
                         <button id="goto-signup-btn" onClick={this.handleGotoSignUp} > Sign up! </button>
-                    </div>
+                    </div> */}
                 </div>
             );
         } else {
