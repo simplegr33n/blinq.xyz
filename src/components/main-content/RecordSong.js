@@ -13,7 +13,7 @@ class RecordSong extends Component {
     render() {
         return (
             <div>
-                Record Song...
+                Record Song...<br/>Yeah still gotta work this out.
             </div>
         );
     }

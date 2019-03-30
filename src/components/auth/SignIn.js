@@ -10,16 +10,10 @@ class SignIn extends Component {
         this.state = {
             username: '',
             password: '',
-            SHOWFIELDS: false
+            SHOWFIELDS: true
         };
 
-        this.firebase = new Firebase()
-
-        this.firebase.auth.onAuthStateChanged((user) => {
-            if (!user) {
-                this.showSigninFields();
-            }
-        });
+        this.firebase = new Firebase();
     }
 
     handleUsernameChange = (event) => {
@@ -40,8 +34,9 @@ class SignIn extends Component {
         return paswdRegex.test(String(testPswd));
     }
 
-    handleSubmit = () => {
-        console.log("SignIn submit pressed");
+    handleLogin = () => {
+        this.hideSigninFields();
+
         let username = this.state.username;
         let password = this.state.password;
         console.log(`SignUp submit pressed - username ${username}`);
@@ -57,24 +52,28 @@ class SignIn extends Component {
             username: '',
             password: ''
         });
-        this.hideSigninFields();
 
-        this.firebase.auth.signInWithEmailAndPassword(username, password).catch(function (error) {
-            // Handle Errors here.
-            var errorCode = error.code;
-            var errorMessage = error.message;
+        this.firebase.auth.signInWithEmailAndPassword(username, password)
+            .then(() => {
+                this.props.signIn("songwall");
+                return;
+            })
+            .catch((error) => {
+                // Handle Errors here.
+                var errorCode = error.code;
+                var errorMessage = error.message;
 
-            console.log(`${errorCode}: ${errorMessage}`)
-            alert(`${errorCode}: ${errorMessage}`)
-            this.setState({ SHOWFIELDS: true });
-            return;
-            // ...
-        });
+                alert(`${errorCode}: ${errorMessage}`);
+                this.showSigninFields();
+            });
+        
+    }
 
-        console.log(`username ${username} - logged in`)
-        this.props.signIn("songwall");
-        return;
-
+    keyPress = (e) => {
+        // handle Enter pressed
+        if (e.keyCode === 13) {
+            this.handleLogin();
+        }
     }
 
     hideSigninFields = () => {
@@ -83,11 +82,6 @@ class SignIn extends Component {
 
     showSigninFields = () => {
         this.setState({ SHOWFIELDS: true });
-    }
-
-    handleGotoSignUp = () => {
-        this.props.gotoSignUp("signup");
-        console.log("Goto signup pressed");
     }
 
     render() {
@@ -102,14 +96,11 @@ class SignIn extends Component {
                     </div>
                     <div>
                         Password:
-                        <input type="password" id="signin-password" value={this.state.password} onChange={this.handlePasswordChange} />
+                        <input type="password" id="signin-password" onKeyDown={this.keyPress} value={this.state.password} onChange={this.handlePasswordChange} />
                     </div>
                     <div>
-                        <button id="submit-signin-btn" onClick={this.handleSubmit} > Sign in! </button>
+                        <button id="submit-signin-btn" onClick={this.handleLogin} > Sign in! </button>
                     </div>
-                    {/* <div>
-                        <button id="goto-signup-btn" onClick={this.handleGotoSignUp} > Sign up! </button>
-                    </div> */}
                 </div>
             );
         } else {

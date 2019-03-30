@@ -52,7 +52,7 @@
     margin: 6px;
     padding: 7px;
     max-height: 30vh;
-    background-color: #317d92;
+    background-color: #8f999c;
     color: rgb(15, 15, 14);
     text-align: left;
 }
@@ -88,7 +88,7 @@
 }
 
 .songInfo {
-    border-radius: 15px;
+    border-radius: 5px;
     width: 100%;
     flex: 1;
     background-color: rgb(203, 203, 211);
@@ -132,17 +132,19 @@
 }
 
 #Studio-Upload-Btn {
-    border-radius: 15px;
-    background: #49b2e6;
-    font-size: 18px;
+    border-radius: 5px;
+    background: #31647d;
+    color: whitesmoke;
+    font-size: 1em;
     font-weight: bold;
-    border: none;
     height: 33px;
-    margin: 6px;
+    margin-top: 4px;
+    margin-left: 2px;
+    margin-right: 2px;
 }
 
 #Studio-Upload-Btn:hover {
-    background: #60c0f0;
+    background: #3796c5;
 }
 
 #Studio-Upload-Btn:active {
@@ -150,17 +152,19 @@
 }
 
 #Studio-Record-Btn {
-    border-radius: 15px;
-    background: #da382d;
-    font-size: 18px;
+    border-radius: 5px;
+    background: #94271f;
+    color: whitesmoke;
+    font-size: 1em;
     font-weight: bold;
-    border: none;
     height: 33px;
-    margin: 6px;
+    margin-top: 4px;
+    margin-left: 2px;
+    margin-right: 2px;
 }
 
 #Studio-Record-Btn:hover {
-    background: #f75d52;
+    background: #cf443a;
 }
 
 #Studio-Record-Btn:active {
@@ -214,7 +218,7 @@
 }
 
 .PublishSongArt {
-    max-height: 108px;
+    max-height: 64px;
 }
 
 .PublishSongName {
@@ -244,7 +248,7 @@
 }
 
 .PublishSongInfo {
-    border-radius: 15px;
+    border-radius: 5px;
     width: 100%;
     max-height: 73px;
     overflow-y: hidden;

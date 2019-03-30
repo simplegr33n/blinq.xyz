@@ -212,11 +212,11 @@ class App extends Component {
 									} else {
 										switch (this.state.mainContent) {
 											case 'signin':
-												return <SignIn gotoSignUp={this.setMainContent} signIn={this.handleSignIn} />;
+												return <SignIn signIn={this.handleSignIn} />;
 											case 'signup':
 												return <SignUp gotoSignIn={this.setMainContent} />;
 											default:
-												return <SignIn gotoSignUp={this.setMainContent} signIn={this.handleSignIn} />;
+												return <SignIn signIn={this.handleSignIn} />;
 										}
 									}
 								})()}

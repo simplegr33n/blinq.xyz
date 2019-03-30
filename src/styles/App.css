@@ -26,7 +26,7 @@
   top: 0;
   height: 100px;
   width: inherit;
-  background-color: #317d92;
+  background-color: #1d1a18;
   display: flex;
   justify-content: flex-end;
   align-items: center;
@@ -50,7 +50,7 @@
   min-height: 100px;
   border: none;
   padding: 0;
-  background-color: #3c342e;
+  background-color: #1d1a18;
 }
 
 #Home-Div:hover {
@@ -92,18 +92,18 @@
 }
 
 .Main-Left-Menu-Btn {
-  background: #4e5461;
+  background: #2c2c2f;
   font-size: 18px;
-  border-radius: 15px;
+  color: whitesmoke;
   font-weight: bold;
   border: none;
-  border-radius: 15px;
+  border-radius: 5px;
   height: 67px;
   margin: 2px;
 }
 
 .Main-Left-Menu-Btn:hover {
-  background: #496870;
+  background: #404046;
 }
 
 .Main-Left-Menu-Btn:active {
@@ -111,8 +111,8 @@
 }
 
 #Profile-Btn {
-  background: #466c75;
-  border-radius: 15px;
+  background: #636262;
+  border-radius: 5px;
   font-size: .7em;
   font-weight: bold;
   flex-grow: 1;
@@ -122,17 +122,17 @@
   margin: 2px;
 }
 
-#Profile-Btn:active {
-  background: #90bfe6;
+#Profile-Btn:hover {
+  background: #7b7b7b;
 }
 
-#Profile-Btn:hover {
+#Profile-Btn:active {
   background: #276c7e;
 }
 
 #Logout-Btn {
-  background: #466c75;
-  border-radius: 15px;
+  background: #636262;
+  border-radius: 5px;
   font-size: .7em;
   font-weight: bold;
   flex-grow: 1;
@@ -142,25 +142,25 @@
   margin: 2px;
 }
 
-#Logout-Btn:active {
-  background: #90bfe6;
+#Logout-Btn:hover {
+  background: #7b7b7b;
 }
 
-#Logout-Btn:hover {
+#Logout-Btn:active {
   background: #276c7e;
 }
 
 #Search-Input {
   width: 20px;
-  border-radius: 15px;
+  border-radius: 5px;
   font-size: 1em;
   flex-grow: 1;
   max-height: 100%;
 }
 
 #Search-Btn {
-  background: #466c75;
-  border-radius: 15px;
+  background: #c3b969;
+  border-radius: 5px;
   font-size: 1.5em;
   font-weight: bold;
   border: none;
@@ -170,13 +170,15 @@
   margin-left: 2px;
 }
 
-#Search-Btn:active {
-  background: #90bfe6;
+#Search-Btn:hover {
+  background: #e0d791;
 }
 
-#Search-Btn:hover {
-  background: #276c7e;
+#Search-Btn:active {
+  background: #eee8b8;
 }
+
+
 
 #mag-glass {
   /* rotate the character */

@@ -74,7 +74,7 @@ class PublishListItem extends Component {
                                 {this.props.song.songName}
                             </div>
                             <div className="PublishSongArtistName">
-                                {this.props.song.artist}
+                                <i>by</i> {" " + this.props.song.artist}
                             </div>
                         </div>
                         <div className="PublishSongRecordingDate">
