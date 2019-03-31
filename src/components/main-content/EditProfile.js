@@ -2,6 +2,8 @@ import React, { Component } from 'react';
 import '../../styles/main-content.css';
 import Firebase from '../../config/firebaseConfig.js'
 
+import TESTprofileImage from '../../assets/TESTprofile-image.png'
+
 
 class EditProfile extends Component {
 
@@ -28,29 +30,39 @@ class EditProfile extends Component {
     }
 
     handleChangePassword = () => {
-        // TODO
         this.props.goto("changepw")
     }
 
 
     render() {
         return (
-            <div>
-                <button id="view-public-btn" onClick={this.gotoPublicProfile}>
-                    View Public
-                </button>
-                <div>
-                    Edit Username:
-                        <input id="edit-username-area" value={this.props.user.username} onChange={this.handleUsernameChange} />
+            <div id="Profile-Page">
+                <div id="Profile-Page-Header">
+                    <div id="Profile-Page-Header-Left">
+                        <button id="view-public-btn" onClick={this.gotoPublicProfile}>View Public</button>
+                        <div>
+                            Name: Jim Beam
+                        </div>
+                        <div>
+                            Username: {this.props.user.username}
+                        </div>
+                        <div>
+                            Email: {this.props.user.email}
+                        </div>
+                        <div>
+                            Bio: stuff stuff stuff stuff stuff
+                        </div>
+
+                        <button onClick={this.handleChangePassword}>Change Password</button>
+                    </div>
+
+                    <div>
+                        <img src={TESTprofileImage} className="Profile-Page-img" alt="Profile" />
+                    </div>
                 </div>
-                <div>
-                    <button onClick={this.handleChangePassword}>Change Password</button>
-                </div>
-                <button id="post-button" onClick={this.handleSubmit}>
-                    Submit Changes
-                </button>
             </div>
         );
+
     }
 }
 

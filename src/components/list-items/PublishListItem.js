@@ -31,29 +31,29 @@ class PublishListItem extends Component {
             pubSong.published = timestamp;
             this.setState({ song: pubSong });
 
-            console.log("PUB!" + pubSong)
+            console.log("Publish: " + pubSong)
 
             // Updates the new song's data simultaneously to the user's song list (/usersongs/UID/*), and the published songs list (/songs/*).
             var pub = {};
-            pub['/songs/' + pubSong.id] = pubSong; // Add to published songs list
-            pub['/user-songs/' + pubSong.uploader + '/' + pubSong.id] = pubSong;
+            pub['/songs/' + pubSong.id] = pubSong; // Add to main songs list (published)
+            pub['/published-songs/' + pubSong.uploader + '/' + pubSong.id] = pubSong; // add to user's published list
+            pub['/user-songs/' + pubSong.uploader + '/' + pubSong.id] = pubSong; // add to user's full list
 
             return this.firebase.db.ref().update(pub);
         } else {
             pubSong.published = null;
             this.setState({ song: pubSong });
 
-            console.log("UNPUB!" + pubSong)
+            console.log("Unpublish: " + pubSong)
 
-            this.firebase.db.ref().child('songs').child(pubSong.id).remove(); // Remove from published songs list
+            this.firebase.db.ref().child('songs').child(pubSong.id).remove(); // Remove from main songs list
+            this.firebase.db.ref().child('published-songs').child(pubSong.uploader).child(pubSong.id).remove(); // Remove from user's published list
 
             var unpub = {};
-            unpub['/user-songs/' + pubSong.uploader + '/' + pubSong.id] = pubSong;
+            unpub['/user-songs/' + pubSong.uploader + '/' + pubSong.id] = pubSong; // update song in user-songs
 
             return this.firebase.db.ref().update(unpub);
         }
-
-
     }
 
     render() {

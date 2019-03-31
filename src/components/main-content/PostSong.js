@@ -10,7 +10,8 @@ class PostSong extends Component {
         this.state = {
             songName: '',
             artistName: '',
-            songInfo: ''
+            songInfo: '',
+            showForm: true
         };
 
         this.firebase = new Firebase()
@@ -30,9 +31,11 @@ class PostSong extends Component {
 
     handleSubmit = () => {
         if (this.state.songName === '' || this.state.artistName === '' || this.state.songInfo === '') {
-            console.log("Missing information for song upload...")
+            alert("Missing information for song upload...")
             return;
         }
+        this.setState({ showForm : false }); // hide form
+
         console.log(`submitPressed: ${this.state.artistName} - ${this.state.songName}: ${this.state.songInfo}`)
         this.setState({ songName: '' });
         this.setState({ artistName: '' });
@@ -47,7 +50,7 @@ class PostSong extends Component {
         let timestamp = date.getTime()
 
         // Get a key for a new song.
-        var newPostKey = this.firebase.db.ref().child('posts').push().key;
+        var newPostKey = this.firebase.db.ref().child('songs').push().key;
 
         // Get storage reference and push file blob 
         var storageRef = this.firebase.storage.ref().child('songs');
@@ -79,36 +82,44 @@ class PostSong extends Component {
                 updates['/user-songs/' + uid + '/' + newPostKey] = songData;
 
                 return this.firebase.db.ref().update(updates);
+            }).then(() => {
+                this.props.goto('studio');
             });
 
     }
 
     render() {
-        return (
-            <div id="submit-song-box">
-                <div>
-                    <input
-                        accept=".mp3,.mp4,.wmv"
-                        type="file"
-                        id="uploadAudioInput" />
-                </div>
-                <div>
-                    Song Name:
+        if (this.state.showForm === true) {
+            return (
+                <div id="submit-song-box">
+                    <div>
+                        <input
+                            accept=".mp3,.mp4,.wmv"
+                            type="file"
+                            id="uploadAudioInput" />
+                    </div>
+                    <div>
+                        Song Name:
                         <textarea id="song-name-area" value={this.state.songName} onChange={this.handleSongNameChange} />
-                </div>
-                <div>
-                    Artist:
+                    </div>
+                    <div>
+                        Artist:
                         <textarea id="artist-names-area" value={this.state.artistName} onChange={this.handleArtistNameChange} />
-                </div>
-                <div>
-                    Additional Info:
+                    </div>
+                    <div>
+                        Additional Info:
                         <textarea id="song-info-area" value={this.state.songInfo} onChange={this.handleSongInfoChange} />
-                </div>
-                <button id="post-button" onClick={this.handleSubmit}>
-                    Upload Song
+                    </div>
+                    <button id="post-button" onClick={this.handleSubmit}>
+                        Upload Song
                 </button>
-            </div>
-        );
+                </div>
+            );
+        } else {
+            return (
+                <div>Please Wait...</div>
+            );
+        }
     }
 }
 

@@ -8,21 +8,29 @@ class TopBarPlayer extends Component {
 		this.state = {
 			song: null,
 			musicPosition: "0%",
-			volumePosition: "100%"
+			volumePosition: "100%",
+			songDuration: '',
+			currentPosition: ''
 		};
 
 		this.audioPlayer = new Audio();
 		this.audioPlayer.loop = false;
 		this.audioPlayer.addEventListener('timeupdate', () => {
 			var position = this.audioPlayer.currentTime / this.audioPlayer.duration;
-			this.setState({ musicPosition: (position * 100) + '%' });
+			this.setState({
+				musicPosition: (position * 100) + '%',
+				currentPosition: this.formatMinutesSeconds(Math.floor(this.audioPlayer.currentTime))
+			});
 		});
 		this.audioPlayer.addEventListener('volumechange', () => {
 			var position = this.audioPlayer.volume;
-			console.log("volume!" + position)
 			this.setState({ volumePosition: (position * 100) + '%' });
 		});
-		
+		this.audioPlayer.onloadedmetadata = () => {
+			console.log(`metadata loaded! duration: ${this.audioPlayer.duration}`);
+			// TODO: update firebase with a song duration if not yet posted there
+			this.setState({ songDuration: this.formatMinutesSeconds(Math.floor(this.audioPlayer.duration)) });
+		};
 
 		this.seekBar = React.createRef()
 		this.volumeBar = React.createRef()
@@ -43,7 +51,7 @@ class TopBarPlayer extends Component {
 
 	handlePlayOrPause = () => {
 		if (this.audioPlayer.src === '') {
-			alert("No file!")
+			alert("Error: nothing to play!")
 			return;
 		}
 		if (this.audioPlayer.ended || this.audioPlayer.paused) {
@@ -70,11 +78,10 @@ class TopBarPlayer extends Component {
 			volumeRatio = 1;
 		}
 
-		console.log(`hero... ${(e.pageY - e.target.offsetTop) / this.volumeBar.current.offsetHeight}`)
-		console.log(`2... ${1- ((e.pageY - e.target.offsetTop) / this.volumeBar.current.offsetHeight)}`)
-
 		this.audioPlayer.volume = volumeRatio;
 	}
+
+	formatMinutesSeconds(s) { return (s - (s %= 60)) / 60 + (9 < s ? ':' : ':0') + s }
 
 	render() {
 		if (this.state.song !== null) {
@@ -90,19 +97,25 @@ class TopBarPlayer extends Component {
 								{this.state.song.songName}
 							</div>
 						</div>
-						<div id="seek-bar" ref={this.seekBar} onClick={this.handleSeekBarClick}>
-							<div id="fill" style={{ width: this.state.musicPosition }}></div>
-							<div id="handle"></div>
+						<div id="Top-Player-Time-Div">
+							<div className="Top-Player-Time-Text-Div">
+								{this.state.currentPosition}
+							</div>
+							<div id="seek-bar" ref={this.seekBar} onClick={this.handleSeekBarClick}>
+								<div id="fill" style={{ width: this.state.musicPosition }}></div>
+								<div id="handle"></div>
+							</div>
+							<div className="Top-Player-Time-Text-Div">
+								{this.state.songDuration}
+							</div>
 						</div>
 						<div id="Top-Player-Btns">
-							<button>&#9198; </button>
-							<button id="TP-Play-Pause-Btn" onClick={this.handlePlayOrPause}>&#9654; / &#9208;</button>
-							<button>&#9197;</button>
+							<button id="TP-Play-Pause-Btn" onClick={this.handlePlayOrPause}>&#9654;</button>
 						</div>
 					</div>
 					<div id="volume-bar" ref={this.volumeBar} onClick={this.handleVolumeBarClick}>
-							<div id="volume-fill" style={{ height: this.state.volumePosition }}></div>
-							<div id="volume-handle"></div>
+						<div id="volume-fill" style={{ height: this.state.volumePosition }}></div>
+						<div id="volume-handle"></div>
 					</div>
 				</div>
 			);

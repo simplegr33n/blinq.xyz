@@ -100,6 +100,8 @@
   border-radius: 5px;
   height: 67px;
   margin: 2px;
+  text-align: right;
+  padding-right: 10px;
 }
 
 .Main-Left-Menu-Btn:hover {
@@ -178,8 +180,6 @@
   background: #eee8b8;
 }
 
-
-
 #mag-glass {
   /* rotate the character */
   -webkit-transform: rotate(45deg);
@@ -201,3 +201,33 @@
 .spacer-240w {
   width: 240px;
 }
+
+/* Auth */
+
+#signin-form {
+  background-color: #94bbce;
+  padding: 16px;
+  color: #1d1b1b;
+  padding-bottom: 32px;
+  margin-top: 3vh;
+}
+
+#signup-div {
+  background-color: #8acea6;
+  padding: 16px;
+  color: #1d1b1b;
+  padding-bottom: 32px;
+  margin-top: 3vh;
+}
+
+#signin-username {}
+
+#signup-username {}
+
+#submit-signin-btn {}
+
+#submit-signup-btn {}
+
+#goto-signup-button {}
+
+#goto-signin-button {}

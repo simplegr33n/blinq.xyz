@@ -1,4 +1,5 @@
 /* Music Player */
+
 #Top-Bar-Player {
     display: flex;
     flex-direction: row;
@@ -33,53 +34,95 @@
     justify-content: center;
     font-size: .8em;
 }
-#seek-bar{
+
+#Top-Player-Time-Div {
+    width: 100%;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-evenly;
+}
+
+#Top-Player-Current-Time {
+    width: 100%;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-evenly;
+}
+
+.Top-Player-Time-Text-Div {
+    width: 20px;
+    min-height: 1px;
+}
+
+#Top-Player-Song-Length {
+    width: 100%;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-evenly;
+}
+
+#seek-bar {
     width: 60%;
     height: 8px;
-    background-color:#6d6d6d;
+    background-color: #6d6d6d;
     display: flex;
     border-radius: 50px;
     margin-bottom: 8px;
     margin-top: 4px;
     cursor: pointer;
 }
-#fill{
+
+#fill {
     height: 100%;
-    background-color:#eaeeec;
+    background-color: #eaeeec;
     border-radius: 20px;
 }
-#handle{
+
+#handle {
     width: 8px;
     height: 8px;
-    background-color:#ff7866;
+    background-color: #ff7866;
     border-radius: 50%;
     margin-left: -5px;
     transform: scale(2);
 }
-#volume-bar{
+
+#volume-bar {
     width: 8px;
     height: 76px;
-    background-color:#6d6d6d;
+    margin-right: 20px;
+    background-color: #6d6d6d;
     display: flex;
     flex-direction: column;
     border-radius: 50px;
     cursor: pointer;
-      /* rotate the bar */
-  -webkit-transform: rotate(180deg);
-  -moz-transform: rotate(180deg);
-  -o-transform: rotate(180deg);
-  transform: rotate(180deg);
+    /* rotate the bar so it fills from bottom */
+    -webkit-transform: rotate(180deg);
+    -moz-transform: rotate(180deg);
+    -o-transform: rotate(180deg);
+    transform: rotate(180deg);
 }
-#volume-fill{
+
+#volume-fill {
     height: 100%;
     width: 100%;
-    background-color:#228d39;
+    background-color: #228d39;
     border-radius: 20px;
 }
-#volume-handle{
+
+#volume-handle {
     width: 8px;
     height: 8px;
-    background-color:#ff7866;
+    background-color: #ff7866;
     border-radius: 50%;
     transform: scale(2);
+}
+
+#TP-Play-Pause-Btn {
+    width: 33px;
+    height: 33px;
+    background: rgb(96, 201, 148); 
+    -moz-border-radius: 70px; 
+    -webkit-border-radius: 70px; 
+    border-radius: 70px;
 }

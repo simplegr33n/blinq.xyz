@@ -3,7 +3,7 @@ import '../../styles/main-content.css';
 
 import TESTSongArt from '../../assets/TESTdarkside.jpeg'
 
-class SongListItem extends Component {
+class ProfileSongItem extends Component {
 
     constructor(props) {
         super(props);
@@ -55,13 +55,10 @@ class SongListItem extends Component {
                     <div className="songInfo">
                         {this.props.song.info}
                     </div>
-
-                    <button className="songList-Uploader-Btn" onClick={this.handleUploaderClick}>Uploader: {this.props.song.uploader}</button>
-
                 </div>
             </div>
         );
     }
 }
 
-export default SongListItem;
+export default ProfileSongItem;

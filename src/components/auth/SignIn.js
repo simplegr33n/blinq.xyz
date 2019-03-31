@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import '../../styles/main-content.css';
+import '../../styles/App.css';
 import Firebase from '../../config/firebaseConfig.js'
 
 
@@ -44,10 +44,16 @@ class SignIn extends Component {
             alert('Bad email me thinks :(')
             return;
         }
-        if (!this.validatePassword(password)) {
-            alert('Bad password. Must be 7-15 characters with at least 1 numeric digit and a special character.')
-            return;
-        }
+
+
+
+        // THE BELOW VALIDATION MAY CLASH WITH RULES OF FIREBASE PASSWORD UPDATE, SO COMMENTING OUT TIL FURTHER THOUGHT THROUGH
+        // if (!this.validatePassword(password)) {
+        //     alert('Bad password. Must be 7-15 characters with at least 1 numeric digit and a special character.')
+        //     return;
+        // }
+
+
         this.setState({
             username: '',
             password: ''
@@ -66,7 +72,7 @@ class SignIn extends Component {
                 alert(`${errorCode}: ${errorMessage}`);
                 this.showSigninFields();
             });
-        
+
     }
 
     keyPress = (e) => {
@@ -88,20 +94,15 @@ class SignIn extends Component {
 
         if (this.state.SHOWFIELDS) {
             return (
-                <div id="signin-div">
-                    <h3>Sign In</h3>
-                    <div>
-                        Email:
-                        <input id="signin-username" value={this.state.username} onChange={this.handleUsernameChange} />
-                    </div>
-                    <div>
-                        Password:
-                        <input type="password" id="signin-password" onKeyDown={this.keyPress} value={this.state.password} onChange={this.handlePasswordChange} />
-                    </div>
+                <form id="signin-form">
+                    <label htmlFor="signin-username">E-mail</label>
+                    <input id="signin-username" value={this.state.username} onChange={this.handleUsernameChange} />
+                    <label htmlFor="password">Password</label>
+                    <input type="password" id="signin-password" onKeyDown={this.keyPress} value={this.state.password} onChange={this.handlePasswordChange} />
                     <div>
                         <button id="submit-signin-btn" onClick={this.handleLogin} > Sign in! </button>
                     </div>
-                </div>
+                </form>
             );
         } else {
             return (

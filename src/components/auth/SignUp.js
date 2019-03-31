@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import '../../styles/main-content.css';
+import '../../styles/App.css';
 import Firebase from '../../config/firebaseConfig.js'
 
 
@@ -34,6 +34,7 @@ class SignUp extends Component {
         var userData = {
             uid: uid,
             username: username,
+            email: username,
             createdAt: timestamp,
             updatedAt: timestamp,
         };

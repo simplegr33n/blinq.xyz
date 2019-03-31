@@ -6,12 +6,12 @@ import 'firebase/storage'
 
 // Initialize Firebase
 var config = {
-    apiKey: "AIzaSyDcnuP-fx2zLEW74c_QaZNXx-eIIK4M-LY",
-    authDomain: "react-firebase-demo-72725.firebaseapp.com",
-    databaseURL: "https://react-firebase-demo-72725.firebaseio.com",
-    projectId: "react-firebase-demo-72725",
-    storageBucket: "react-firebase-demo-72725.appspot.com",
-    messagingSenderId: "56743861930"
+    apiKey: "AIzaSyBLea3SENzTDx8fHj3oo3vktAF-7B3jyXQ",
+    authDomain: "blinq-43545.firebaseapp.com",
+    databaseURL: "https://blinq-43545.firebaseio.com",
+    projectId: "blinq-43545",
+    storageBucket: "blinq-43545.appspot.com",
+    messagingSenderId: "234958171789"
 };
 
 class Firebase {

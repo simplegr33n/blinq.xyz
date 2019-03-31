@@ -18,6 +18,7 @@ import RecordSong from './components/main-content/RecordSong.js'
 import PostSong from './components/main-content/PostSong.js'
 import EditProfile from './components/main-content/EditProfile.js'
 import Profile from './components/main-content/Profile.js'
+import SongDetails from './components/main-content/SongDetails.js'
 
 // Music Player
 import TopBarPlayer from './components/music-player/TopBarPlayer.js'
@@ -28,10 +29,11 @@ class App extends Component {
 	constructor(props) {
 		super(props);
 		this.state = {
-			mainContent: 'signin', // signin, signup, postsong, songwall, studio, profile, editprofile, changepw, record, etc.
+			mainContent: 'signin', // signin, signup, postsong, songwall, songdetails, studio, profile, editprofile, changepw, record, etc.
 			UID: null,
 			username: '',
-			currentSong: null, // for playing... TODO://also need something for songpage viewing
+			currentSong: null, // for playing
+			viewSong: null, // to view SongDetails page
 			viewProfile: null // set to ID of profile you want to view
 		};
 
@@ -39,9 +41,9 @@ class App extends Component {
 		this.firebase.auth.onAuthStateChanged((user) => {
 			if (user) {
 				console.log(`UID: ${user.uid}`);
-				this.setState({ 
+				this.setState({
 					UID: user.uid,
-					email: user.email 
+					email: user.email
 				});
 				this.getUsername();
 			}
@@ -144,6 +146,26 @@ class App extends Component {
 		}
 	}
 
+	gotoSongDetails = (songId) => {
+		console.log("goto song details: " + songId)
+
+		if (this.state.viewSong === null || this.state.viewSong.id !== songId) {
+			var ref = this.firebase.db.ref().child('songs').child(songId);
+
+			ref.once("value", (snapshot) => {
+				this.setState({
+					viewSong: snapshot.val()
+				});
+			}).then(() => {
+				if (this.state.mainContent !== 'songdetails') {
+					this.setState({ mainContent: 'songdetails' });
+				}
+			});
+		}
+
+
+	}
+
 
 	render() {
 		return (
@@ -181,10 +203,12 @@ class App extends Component {
 														</div>
 													</button>
 												</div>
-												<button className="Main-Left-Menu-Btn" onClick={this.openStudio}>Studio</button>
-												<button className="Main-Left-Menu-Btn" onClick={this.openSongWall}>Songwall</button>
+												<button className="Main-Left-Menu-Btn" onClick={this.openStudio}>STUDIO</button>
+												<button className="Main-Left-Menu-Btn" onClick={this.openSongWall}>SONG-WALL</button>
 											</div>
 										);
+									} else {
+										return <SignIn signIn={this.handleSignIn} />;
 									}
 								})()}
 							</div>
@@ -197,7 +221,7 @@ class App extends Component {
 											case 'studio':
 												return <Studio UID={this.state.UID} goto={this.setMainContent} playSong={this.handleSetSong} />;
 											case 'postsong':
-												return <PostSong UID={this.state.UID} username={this.state.username} />;
+												return <PostSong UID={this.state.UID} username={this.state.username} goto={this.setMainContent} />;
 											case 'record':
 												return <RecordSong UID={this.state.UID} username={this.state.username} />;
 											case 'editprofile':
@@ -205,18 +229,18 @@ class App extends Component {
 											case 'changepw':
 												return <ChangePassword email={this.state.email} />;
 											case 'profile':
-												return <Profile user={this.state.user} />;
+												return <Profile user={this.state.user} UID={this.state.uid} setSong={this.handleSetSong} gotoSongDetails={this.gotoSongDetails}/>;
+											case 'songdetails':
+												return <SongDetails song={this.state.viewSong} />;
 											default:
-												return <SongWall setSong={this.handleSetSong} />;
+												return <SongWall setSong={this.handleSetSong} gotoProfile={this.gotoProfile} gotoSongDetails={this.gotoSongDetails} />;
 										}
 									} else {
 										switch (this.state.mainContent) {
-											case 'signin':
-												return <SignIn signIn={this.handleSignIn} />;
 											case 'signup':
 												return <SignUp gotoSignIn={this.setMainContent} />;
 											default:
-												return <SignIn signIn={this.handleSignIn} />;
+												return <div />;
 										}
 									}
 								})()}

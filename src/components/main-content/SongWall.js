@@ -10,21 +10,16 @@ class SongWall extends Component {
 	constructor(props) {
 		super(props);
 		this.state = {
-			songs: []
+			songs: [],
+			lastProps: null
 		};
 
 		this.firebase = new Firebase()
 		this.getSongs()
 	}
 
-
-	handleSetSong = (setValue) => {
-		// set song in App.js
-		this.props.setSong(setValue);
-	}
-
 	getSongs = () => {
-		// Posts branch of tree
+		// Songs branch of tree
 		var ref = this.firebase.db.ref().child('songs')
 
 		ref.on('child_added', snapshot => {
@@ -48,10 +43,32 @@ class SongWall extends Component {
 		});
 	}
 
+	handleSetSong = (setValue) => {
+		// set song in App.js
+		this.props.setSong(setValue);
+	}
+
+	gotoProfile = (uid) => {
+		console.log(uid);
+		this.props.gotoProfile(uid);
+	}
+
+	gotoSongDetails = (id) => {
+		console.log(id);
+		this.props.gotoSongDetails(id)
+	}
+
 	render() {
 		return (
 			<div id="Songs-List">
-				{this.state.songs.map((song) => (<SongListItem song={song} key={song.id} setSong={this.handleSetSong}/>))}
+				{this.state.songs.reverse().map((song) => (
+					<SongListItem
+						song={song}
+						key={song.id}
+						setSong={this.handleSetSong}
+						setProfile={this.gotoProfile}
+						setSongDetails={this.gotoSongDetails}/>
+					))}
 			</div>
 		);
 	}

@@ -91,6 +91,7 @@
     border-radius: 5px;
     width: 100%;
     flex: 1;
+    flex-grow: 1;
     background-color: rgb(203, 203, 211);
     max-height: 17.5vh;
     overflow-y: hidden;
@@ -109,12 +110,17 @@
 }
 
 .Publish-Song-Play-Btn {
-
+    border-radius: 5px;
 }
+
 
 .songListItemRight {
     width: 100%;
     padding: 4px;
+}
+
+.songList-Uploader-Btn {
+
 }
 
 /* PublishSongWall */
@@ -259,32 +265,44 @@
     color: rgb(51, 53, 46);
 }
 
-/* Auth */
-
-#signin-div {
-    background-color: #94bbce;
-    padding: 16px;
-    color: #1d1b1b;
-    padding-bottom: 32px;
-    margin-top: 3vh;
+/* Profile Page */
+#Profile-Page {
+    background-color: rgb(90, 90, 90);
+    margin: 4px;
 }
 
-#signup-div {
-    background-color: #8acea6;
-    padding: 16px;
-    color: #1d1b1b;
-    padding-bottom: 32px;
-    margin-top: 3vh;
+#Profile-Page-Header {
+    background-color: gray;
+    display: flex;
+    flex-direction: row;
+    padding: 4px;
+    margin: 4px;
 }
 
-#signin-username {}
+#Profile-Page-Header-Left {
+ flex-grow: 1;
+}
 
-#signup-username {}
+.Profile-Page-img {
+    max-height: 250px;
+    max-width: 250px;
+}
 
-#submit-signin-btn {}
+#Profile-Songs-List {
+    width: inherit;
+    height: calc(100vh - 100px);
+    flex-direction: column;
+    overflow-y: scroll;
+}
 
-#submit-signup-btn {}
+/* Song Details  */
+#Song-Details-Page {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
 
-#goto-signup-button {}
-
-#goto-signin-button {}
+.Song-Details-img {
+    height: 200px;
+    width: 200px;
+}
