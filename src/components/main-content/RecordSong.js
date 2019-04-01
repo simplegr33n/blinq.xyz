@@ -57,7 +57,8 @@ class RecordSong extends Component {
                     uploader: this.state.user.uid,
                     uploaderName: this.state.user.username,
                     published: null,
-                    duration: duration
+                    duration: duration,
+                    saving: false
                 };
 
 
@@ -94,7 +95,10 @@ class RecordSong extends Component {
         // stop the recorder
         this.mediaRecorder.stop();
         // say that we're not recording
-        this.setState({ recording: false });
+        this.setState({ 
+            recording: false,
+            saving: true
+         });
         // save the video to memory
         this.saveAudio();
     }
@@ -110,22 +114,29 @@ class RecordSong extends Component {
     }
 
     render() {
-        return (
-            <div id="Record-Page">
+        if (!this.state.saving) {
+            return (
+                <div id="Record-Page">
+                    <button id="Record-Record-Btn" onClick={this.handleRecordBtn} >
+                        {(() => {
+                            if (this.state.recording) {
+                                return "STOP" // TODO: ideally show the recorded time here... 00:00:00
+                            } else {
+                                return "RECORD"
+                            }
+                        })()}
+                    </button>
+                    <audio id="recordedAudio" />
+                </div>
+            );
+        } else {
+            return (
+                <div id="Record-Page">
+                    Please wait...
+                </div>
+            );
+        }
 
-                <button id="Record-Record-Btn" onClick={this.handleRecordBtn} >
-                    {(() => {
-                        if (this.state.recording) {
-                            return "STOP" // TODO: ideally show the recorded time here... 00:00:00
-                        } else {
-                            return "RECORD"
-                        }
-                    })()}
-                </button>
-                <audio id="recordedAudio" />
-
-            </div>
-        );
     }
 }
 export default RecordSong;

@@ -56,6 +56,8 @@ class PublishListItem extends Component {
         }
     }
 
+    formatMinutesSeconds(s) { return (s - (s %= 60)) / 60 + (9 < s ? ':' : ':0') + s }
+
     render() {
         return (
             <div className="PublishSongListItem">
@@ -63,7 +65,7 @@ class PublishListItem extends Component {
                 <div>
                     <button className="Publish-Song-Play-Btn" onClick={this.handlePlay}>
                         <img src={TESTSongArt} className="PublishSongArt" alt="Song Art" />
-                        {this.props.song.songLength} &#9654;
+                        {this.formatMinutesSeconds(this.props.song.duration)} &#9654;
                     </button>
                 </div>
 
