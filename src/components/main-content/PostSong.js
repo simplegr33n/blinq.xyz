@@ -58,8 +58,6 @@ class PostSong extends Component {
         const file = document.querySelector('#uploadAudioInput').files[0];
         const duration = await getBlobDuration(file)
 
-        console.log ("DURATION post " + duration)
-
         const metadata = { contentType: file.type };
         const storageTask = storageRef.child(this.props.UID).child(newPostKey).child(songname + ".mp3").put(file, metadata);
         let songData;
@@ -79,7 +77,7 @@ class PostSong extends Component {
                     uploader: uid,
                     uploaderName: username,
                     published: null,
-                    duration: duration
+                    duration: Math.floor(duration)
                 };
 
 

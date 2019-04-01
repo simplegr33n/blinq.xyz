@@ -78,7 +78,7 @@ class RecordSong extends Component {
         const audioBlob = new Blob(this.audioChunks, { type: 'audio/mpeg-3' });
         const duration = await getBlobDuration(audioBlob)
 
-        this.postToFirebase(audioBlob, duration)
+        this.postToFirebase(audioBlob, Math.floor(duration))
 
     }
 
