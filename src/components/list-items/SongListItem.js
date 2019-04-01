@@ -9,6 +9,8 @@ class SongListItem extends Component {
         super(props);
         this.state = {
         };
+        console.log(this.props.song.duration)
+        console.log("song list item dur:" + this.props.song.duration)
     }
 
     handlePlay = () => {
@@ -26,13 +28,15 @@ class SongListItem extends Component {
         this.props.setSongDetails(this.props.song.id);
     }
 
+    formatMinutesSeconds(s) { return (s - (s %= 60)) / 60 + (9 < s ? ':' : ':0') + s }
+
     render() {
         return (
             <div className="SongListItem">
                 <div>
                     <button className="Song-Item-Play-Btn" onClick={this.handlePlay}>
                         <img src={TESTSongArt} className="songArt" alt="Song Art" />
-                        {this.props.song.songLength} &#9654;
+                        {this.formatMinutesSeconds(this.props.song.duration)} &#9654;
                     </button>
                 </div>
 

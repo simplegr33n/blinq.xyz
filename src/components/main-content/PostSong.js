@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import '../../styles/main-content.css';
 import Firebase from '../../config/firebaseConfig.js'
+import getBlobDuration from 'get-blob-duration';
 
 
 class PostSong extends Component {
@@ -45,7 +46,7 @@ class PostSong extends Component {
         this.postToFirebase(this.props.UID, this.props.username, this.state.songName, this.state.artistName, this.state.songInfo)
     }
 
-    postToFirebase(uid, username, songname, artist, info) {
+    async postToFirebase(uid, username, songname, artist, info) {
         let date = new Date()
         let timestamp = date.getTime()
 
@@ -55,6 +56,10 @@ class PostSong extends Component {
         // Get storage reference and push file blob 
         var storageRef = this.firebase.storage.ref().child('songs');
         const file = document.querySelector('#uploadAudioInput').files[0];
+        const duration = await getBlobDuration(file)
+
+        console.log ("DURATION post " + duration)
+
         const metadata = { contentType: file.type };
         const storageTask = storageRef.child(this.props.UID).child(newPostKey).child(songname + ".mp3").put(file, metadata);
         let songData;
@@ -73,7 +78,8 @@ class PostSong extends Component {
                     uploaded: timestamp,
                     uploader: uid,
                     uploaderName: username,
-                    published: null
+                    published: null,
+                    duration: duration
                 };
 
 

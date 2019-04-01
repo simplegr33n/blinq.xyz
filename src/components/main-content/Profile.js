@@ -66,7 +66,7 @@ class Profile extends Component {
                 uploaded: snapshot.val().uploaded,
                 published: snapshot.val().published,
                 id: snapshot.val().id,
-                songLength: '3:33' // Placeholder
+                duration: snapshot.val().id
             });
             this.setState({
                 songs: previousSongs
@@ -99,7 +99,7 @@ class Profile extends Component {
                         </div>
                     </div>
                     <div id="Profile-Songs-List">
-                        {this.state.songs.reverse().map((song) => (<ProfileSongItem song={song} key={song.id} setSong={this.handleSetSong} setSongDetails={this.gotoSongDetails} />))}
+                        {this.state.songs.map((song) => (<ProfileSongItem song={song} key={song.id} setSong={this.handleSetSong} setSongDetails={this.gotoSongDetails} />))}
                     </div>
                 </div>
             );

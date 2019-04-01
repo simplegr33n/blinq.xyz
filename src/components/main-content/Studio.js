@@ -48,7 +48,7 @@ class Studio extends Component {
 				uploaded: snapshot.val().uploaded,
 				published: snapshot.val().published,
 				id: snapshot.val().id,
-				songLength: '3:33' // Placeholder
+				duration: snapshot.val().duration
 			});
 			this.setState({
 				songs: previousSongs
@@ -64,7 +64,7 @@ class Studio extends Component {
 					<button id="Studio-Record-Btn" onClick={this.handleRecord}>Record</button>
 				</div>
 				<div id="Studio-Songs-List">
-					{this.state.songs.reverse().map((song) => (<PublishListItem song={song} key={song.id} playSong={this.handlePlaySong}/>))}
+					{this.state.songs.map((song) => (<PublishListItem song={song} key={song.id} playSong={this.handlePlaySong}/>))}
 				</div>
 			</div>
 

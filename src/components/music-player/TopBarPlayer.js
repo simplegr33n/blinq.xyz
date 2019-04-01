@@ -26,11 +26,7 @@ class TopBarPlayer extends Component {
 			var position = this.audioPlayer.volume;
 			this.setState({ volumePosition: (position * 100) + '%' });
 		});
-		this.audioPlayer.onloadedmetadata = () => {
-			console.log(`metadata loaded! duration: ${this.audioPlayer.duration}`);
-			// TODO: update firebase with a song duration if not yet posted there
-			this.setState({ songDuration: this.formatMinutesSeconds(Math.floor(this.audioPlayer.duration)) });
-		};
+		//this.setState({ songDuration: this.formatMinutesSeconds(Math.floor(this.props.song.duration)) });
 
 		this.seekBar = React.createRef()
 		this.volumeBar = React.createRef()
@@ -44,7 +40,10 @@ class TopBarPlayer extends Component {
 			return;
 		}
 
-		this.setState({ song: props.song });
+		this.setState({ 
+			song: props.song,
+			songDuration: this.formatMinutesSeconds(Math.floor(props.song.duration)) 
+		});
 		this.audioPlayer.src = props.song.url;
 		this.audioPlayer.play();
 	}

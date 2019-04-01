@@ -40,7 +40,7 @@ class SongWall extends Component {
 				uploaded: snapshot.val().uploaded,
 				published: snapshot.val().published,
 				id: snapshot.val().id,
-				songLength: '3:33' // Placeholder
+				duration: snapshot.val().duration
 			});
 			this.setState({
 				songs: previousSongs

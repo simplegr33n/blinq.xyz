@@ -55,6 +55,7 @@
     background-color: #8f999c;
     color: rgb(15, 15, 14);
     text-align: left;
+    overflow-y: hidden;
 }
 
 .songHeader {
@@ -102,7 +103,7 @@
 
 .songArt {
     border-radius: 15px;
-    max-height: 25vh;
+    max-height: 120px;
 }
 
 .Song-Item-Play-Btn {
@@ -141,7 +142,7 @@
     border-radius: 5px;
     background: #31647d;
     color: whitesmoke;
-    font-size: 1em;
+    font-size: 0.9em;
     font-weight: bold;
     height: 33px;
     margin-top: 4px;
@@ -161,7 +162,7 @@
     border-radius: 5px;
     background: #94271f;
     color: whitesmoke;
-    font-size: 1em;
+    font-size: 0.9em;
     font-weight: bold;
     height: 33px;
     margin-top: 4px;
@@ -306,3 +307,38 @@
     height: 200px;
     width: 200px;
 }
+
+/* Record Page */
+#Record-Page {
+    background-color: rgb(49, 47, 47);
+    padding: 16px;
+    margin: 4px;
+}
+
+
+#Record-Record-Btn {
+    width: 120px;
+    height: 120px;
+    font-size: 1.1em;
+    color: black;
+    font-weight: bold;
+    background: rgb(196, 142, 142); 
+    -moz-border-radius: 70px; 
+    -webkit-border-radius: 70px; 
+    border-radius: 70px;
+}
+
+#Record-Record-Btn:hover {
+    background: rgb(235, 92, 92); 
+}
+
+#Record-Record-Btn:active {
+    color: whitesmoke;
+    background: rgb(238, 36, 36); 
+}
+
+#recordedAudio {
+    left: 100px;
+    right: 100px;
+    position: relative;
+  }

@@ -32,6 +32,7 @@ class App extends Component {
 			mainContent: 'signin', // signin, signup, postsong, songwall, songdetails, studio, profile, editprofile, changepw, record, etc.
 			UID: null,
 			username: '',
+			user: null,
 			currentSong: null, // for playing
 			viewSong: null, // to view SongDetails page
 			viewProfileId: null // set to ID of profile you want to view
@@ -43,7 +44,8 @@ class App extends Component {
 				//console.log(`UID: ${user.uid}`);
 				this.setState({
 					UID: user.uid,
-					email: user.email
+					email: user.email,
+					user: user
 				});
 				this.getUsername();
 			}
@@ -221,7 +223,7 @@ class App extends Component {
 											case 'postsong':
 												return <PostSong UID={this.state.UID} username={this.state.username} goto={this.setMainContent} />;
 											case 'record':
-												return <RecordSong UID={this.state.UID} username={this.state.username} />;
+												return <RecordSong user={this.state.user} goto={this.setMainContent} />;
 											case 'editprofile':
 												return <EditProfile user={this.state.user} gotoProfile={this.gotoProfile} goto={this.setMainContent} />;
 											case 'changepw':
