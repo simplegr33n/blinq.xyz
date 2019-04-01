@@ -12,82 +12,102 @@ class Profile extends Component {
     constructor(props) {
         super(props);
         this.state = {
-            user: this.props.user,
-            songs: []
+            user: null,
+            songs: [],
+            profileId: this.props.profileId
         };
 
         this.firebase = new Firebase()
+    }
+
+    componentDidMount() {
+        this.getUser();
         this.getSongs();
     }
 
-    handleSetSong = (setValue) => {
+    getUser = () => {
+        // Songs branch of tree
+        var ref = this.firebase.db.ref().child('users').child(this.props.profileId);
 
-        console.log(setValue)
-
-		// set song in App.js
-		this.props.setSong(setValue);
+        ref.on("value", (snapshot) => {
+            this.setState({
+                user: snapshot.val(),
+            });
+        }, function (errorObject) {
+            console.log("User profile get failed: " + errorObject.code);
+        });
     }
-    
+
+    handleSetSong = (setValue) => {
+        console.log(setValue)
+        // set song in App.js
+        this.props.setSong(setValue);
+    }
+
     gotoSongDetails = (id) => {
-		console.log(id);
-		this.props.gotoSongDetails(id)
-	}
+        console.log(id);
+        this.props.gotoSongDetails(id)
+    }
 
     getSongs = () => {
-        // Songs branch of tree
-        var ref = this.firebase.db.ref().child('published-songs').child(this.props.user.uid);
+        // User's published songs
+        var ref = this.firebase.db.ref().child('published-songs').child(this.props.profileId);
 
         ref.on('child_added', snapshot => {
-            if (snapshot.val().uploader === this.state.user.uid) {
-                const previousSongs = this.state.songs;
-                previousSongs.push({
-                    url: snapshot.val().url,
-                    songName: snapshot.val().songName,
-                    artist: snapshot.val().artist,
-                    recorded: snapshot.val().recorded,
-                    info: snapshot.val().info,
-                    uploader: snapshot.val().uploader,
-                    uploaderName: snapshot.val().uploaderName,
-                    uploaded: snapshot.val().uploaded,
-                    published: snapshot.val().published,
-                    id: snapshot.val().id,
-                    songLength: '3:33' // Placeholder
-                });
-                this.setState({
-                    songs: previousSongs
-                });
-            }
+            const previousSongs = this.state.songs;
+            previousSongs.push({
+                url: snapshot.val().url,
+                songName: snapshot.val().songName,
+                artist: snapshot.val().artist,
+                recorded: snapshot.val().recorded,
+                info: snapshot.val().info,
+                uploader: snapshot.val().uploader,
+                uploaderName: snapshot.val().uploaderName,
+                uploaded: snapshot.val().uploaded,
+                published: snapshot.val().published,
+                id: snapshot.val().id,
+                songLength: '3:33' // Placeholder
+            });
+            this.setState({
+                songs: previousSongs
+            });
         });
     }
 
     render() {
-        return (
-            <div id="Profile-Page">
-                <div id="Profile-Page-Header">
-                    <div id="Profile-Page-Header-Left">
-                        <div>
-                            Name: {this.props.user.name}
+        if (this.state.user !== null) {
+            return (
+                <div id="Profile-Page">
+                    <div id="Profile-Page-Header">
+                        <div id="Profile-Page-Header-Left">
+                            <div>
+                                Name: {this.state.user.name}
+                            </div>
+                            <div>
+                                Username: {this.state.user.username}
+                            </div>
+                            <div>
+                                Email: {this.state.user.email}
+                            </div>
+                            <div>
+                                Bio: stuff stuff stuff stuff stuff
                         </div>
-                        <div>
-                            Username: {this.props.user.username}
                         </div>
-                        <div>
-                            Email: {this.props.user.email}
-                        </div>
-                        <div>
-                            Bio: stuff stuff stuff stuff stuff
-                        </div>
-                    </div>
 
-                    <div>
-                        <img src={TESTprofileImage} className="Profile-Page-img" alt="Profile" />
+                        <div>
+                            <img src={TESTprofileImage} className="Profile-Page-img" alt="Profile" />
+                        </div>
+                    </div>
+                    <div id="Profile-Songs-List">
+                        {this.state.songs.reverse().map((song) => (<ProfileSongItem song={song} key={song.id} setSong={this.handleSetSong} setSongDetails={this.gotoSongDetails} />))}
                     </div>
                 </div>
-                <div id="Profile-Songs-List">
-                    {this.state.songs.reverse().map((song) => (<ProfileSongItem song={song} key={song.id} setSong={this.handleSetSong} setSongDetails={this.gotoSongDetails} />))}
-                </div>
-            </div>
-        );
+            );
+        } else {
+            return (
+                <div></div>
+            )
+        }
     }
 }
 

@@ -34,13 +34,13 @@ class App extends Component {
 			username: '',
 			currentSong: null, // for playing
 			viewSong: null, // to view SongDetails page
-			viewProfile: null // set to ID of profile you want to view
+			viewProfileId: null // set to ID of profile you want to view
 		};
 
 		this.firebase = new Firebase()
 		this.firebase.auth.onAuthStateChanged((user) => {
 			if (user) {
-				console.log(`UID: ${user.uid}`);
+				//console.log(`UID: ${user.uid}`);
 				this.setState({
 					UID: user.uid,
 					email: user.email
@@ -85,7 +85,7 @@ class App extends Component {
 	}
 
 	handleSetSong = (setValue) => {
-		console.log("handle setsong: " + setValue)
+		console.log("App: handleSetSong( " + setValue.songName)
 		if (this.state.currentSong !== null && setValue.url !== this.state.currentSong.url) {
 			this.setState({
 				currentSong: setValue
@@ -138,8 +138,8 @@ class App extends Component {
 	gotoProfile = (uid) => {
 		console.log("goto profile: " + uid)
 
-		if (this.state.viewProfile !== uid) {
-			this.setState({ viewProfile: uid });
+		if (this.state.viewProfileId !== uid) {
+			this.setState({ viewProfileId: uid });
 		}
 		if (this.state.mainContent !== 'profile') {
 			this.setState({ mainContent: 'profile' });
@@ -147,7 +147,7 @@ class App extends Component {
 	}
 
 	gotoSongDetails = (songId) => {
-		console.log("goto song details: " + songId)
+		console.log("App: gotoSongDetails(" + songId)
 
 		if (this.state.viewSong === null || this.state.viewSong.id !== songId) {
 			var ref = this.firebase.db.ref().child('songs').child(songId);
@@ -162,8 +162,6 @@ class App extends Component {
 				}
 			});
 		}
-
-
 	}
 
 
@@ -217,7 +215,7 @@ class App extends Component {
 									if (this.state.UID) {
 										switch (this.state.mainContent) {
 											case 'songwall':
-												return <SongWall setSong={this.handleSetSong} />;
+												return <SongWall setSong={this.handleSetSong} gotoProfile={this.gotoProfile} gotoSongDetails={this.gotoSongDetails}/>;
 											case 'studio':
 												return <Studio UID={this.state.UID} goto={this.setMainContent} playSong={this.handleSetSong} />;
 											case 'postsong':
@@ -229,7 +227,7 @@ class App extends Component {
 											case 'changepw':
 												return <ChangePassword email={this.state.email} />;
 											case 'profile':
-												return <Profile user={this.state.user} UID={this.state.uid} setSong={this.handleSetSong} gotoSongDetails={this.gotoSongDetails}/>;
+												return <Profile profileId={this.state.viewProfileId} setSong={this.handleSetSong} gotoSongDetails={this.gotoSongDetails}/>;
 											case 'songdetails':
 												return <SongDetails song={this.state.viewSong} />;
 											default:

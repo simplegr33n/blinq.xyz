@@ -60,8 +60,8 @@ class Studio extends Component {
 		return (
 			<div>
 				<div id="Studio-Add-Song-Btns">
-					<button id="Studio-Upload-Btn" onClick={this.handleUpload}>Upload File</button>
-					<button id="Studio-Record-Btn" onClick={this.handleRecord}>Record Song</button>
+					<button id="Studio-Upload-Btn" onClick={this.handleUpload}>Upload</button>
+					<button id="Studio-Record-Btn" onClick={this.handleRecord}>Record</button>
 				</div>
 				<div id="Studio-Songs-List">
 					{this.state.songs.reverse().map((song) => (<PublishListItem song={song} key={song.id} playSong={this.handlePlaySong}/>))}

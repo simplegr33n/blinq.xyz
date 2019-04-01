@@ -94,7 +94,7 @@ class PostSong extends Component {
                 <div id="submit-song-box">
                     <div>
                         <input
-                            accept=".mp3,.mp4,.wmv"
+                            accept=".mp3,.mp4,.wmv,.m4a"
                             type="file"
                             id="uploadAudioInput" />
                     </div>

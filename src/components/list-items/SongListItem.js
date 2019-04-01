@@ -13,10 +13,12 @@ class SongListItem extends Component {
 
     handlePlay = () => {
         // pass song to SongWall, which will pass on to App
+        console.log("SongListItem play: " + this.props.song.songName)
         this.props.setSong(this.props.song);
     }
 
     handleUploaderClick = () => {
+        console.log("SongListItem uploader: " + this.props.song.uploader)
         this.props.setProfile(this.props.song.uploader);
     }
 

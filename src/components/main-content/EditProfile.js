@@ -41,7 +41,7 @@ class EditProfile extends Component {
                     <div id="Profile-Page-Header-Left">
                         <button id="view-public-btn" onClick={this.gotoPublicProfile}>View Public</button>
                         <div>
-                            Name: Jim Beam
+                            Name: {this.props.user.name}
                         </div>
                         <div>
                             Username: {this.props.user.username}

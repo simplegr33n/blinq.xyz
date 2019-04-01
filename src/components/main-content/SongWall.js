@@ -15,6 +15,11 @@ class SongWall extends Component {
 		};
 
 		this.firebase = new Firebase()
+		
+	}
+
+	componentDidMount() {
+		console.log("SongWall component mounted")
 		this.getSongs()
 	}
 
@@ -45,23 +50,24 @@ class SongWall extends Component {
 
 	handleSetSong = (setValue) => {
 		// set song in App.js
+		console.log("SongWall: handleSetSong(" + setValue.songName);
 		this.props.setSong(setValue);
 	}
 
 	gotoProfile = (uid) => {
-		console.log(uid);
+		console.log("SongWall: gotoProfile(" + uid);
 		this.props.gotoProfile(uid);
 	}
 
 	gotoSongDetails = (id) => {
-		console.log(id);
+		console.log("SongWall: gotoSongDetails(" + id);
 		this.props.gotoSongDetails(id)
 	}
 
 	render() {
 		return (
 			<div id="Songs-List">
-				{this.state.songs.reverse().map((song) => (
+				{this.state.songs.map((song) => (
 					<SongListItem
 						song={song}
 						key={song.id}
