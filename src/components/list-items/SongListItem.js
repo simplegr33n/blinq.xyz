@@ -62,7 +62,7 @@ class SongListItem extends Component {
                         {this.props.song.info}
                     </div>
 
-                    <button className="songList-Uploader-Btn" onClick={this.handleUploaderClick}>Uploader: {this.props.song.uploader}</button>
+                    <button className="songList-Uploader-Btn" onClick={this.handleUploaderClick}>Uploaded by: {this.props.song.uploaderName}</button>
 
                 </div>
             </div>
