@@ -45,6 +45,7 @@
 }
 
 /* SongWall ListItem */
+
 .SongListItem {
     border-radius: 15px;
     display: flex;
@@ -114,17 +115,15 @@
     border-radius: 5px;
 }
 
-
 .songListItemRight {
     width: 100%;
     padding: 4px;
 }
 
-.songList-Uploader-Btn {
-
-}
+.songList-Uploader-Btn {}
 
 /* PublishSongWall */
+
 #PublishSongs-List {
     width: inherit;
     height: calc(100vh - 144px);
@@ -179,6 +178,7 @@
 }
 
 /* PublishSongWall ListItem */
+
 .PublishSongListItem {
     display: flex;
     flex-direction: row;
@@ -267,6 +267,7 @@
 }
 
 /* Profile Page */
+
 #Profile-Page {
     background-color: rgb(90, 90, 90);
     margin: 4px;
@@ -281,7 +282,7 @@
 }
 
 #Profile-Page-Header-Left {
- flex-grow: 1;
+    flex-grow: 1;
 }
 
 .Profile-Page-img {
@@ -297,10 +298,13 @@
 }
 
 /* Song Details  */
+
 #Song-Details-Page {
     display: flex;
     flex-direction: column;
     align-items: center;
+    margin: 4px;
+    background-color: rgb(54, 52, 52);
 }
 
 .Song-Details-img {
@@ -308,13 +312,17 @@
     width: 200px;
 }
 
+.Details-Play-Btn {
+    border-radius: 15px;
+}
+
 /* Record Page */
+
 #Record-Page {
     background-color: rgb(49, 47, 47);
     padding: 16px;
     margin: 4px;
 }
-
 
 #Record-Record-Btn {
     width: 120px;
@@ -322,23 +330,23 @@
     font-size: 1.1em;
     color: black;
     font-weight: bold;
-    background: rgb(196, 142, 142); 
-    -moz-border-radius: 70px; 
-    -webkit-border-radius: 70px; 
+    background: rgb(196, 142, 142);
+    -moz-border-radius: 70px;
+    -webkit-border-radius: 70px;
     border-radius: 70px;
 }
 
 #Record-Record-Btn:hover {
-    background: rgb(235, 92, 92); 
+    background: rgb(235, 92, 92);
 }
 
 #Record-Record-Btn:active {
     color: whitesmoke;
-    background: rgb(238, 36, 36); 
+    background: rgb(238, 36, 36);
 }
 
 #recordedAudio {
     left: 100px;
     right: 100px;
     position: relative;
-  }
+}

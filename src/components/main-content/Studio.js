@@ -10,7 +10,7 @@ class Studio extends Component {
 	constructor(props) {
 		super(props);
 		this.state = {
-			UID: this.props.UID,
+			user: this.props.user,
 			songs: []
 		};
 
@@ -33,7 +33,7 @@ class Studio extends Component {
 
 	getSongs = () => {
 		// Posts branch of tree
-		var ref = this.firebase.db.ref().child('user-songs').child(this.state.UID);
+		var ref = this.firebase.db.ref().child('user-songs').child(this.state.user.uid);
 
 		ref.on('child_added', snapshot => {
 			const previousSongs = this.state.songs;

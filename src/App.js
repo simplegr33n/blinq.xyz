@@ -30,7 +30,6 @@ class App extends Component {
 		super(props);
 		this.state = {
 			mainContent: 'signin', // signin, signup, postsong, songwall, songdetails, studio, profile, editprofile, changepw, record, etc.
-			UID: null,
 			username: '',
 			user: null,
 			currentSong: null, // for playing
@@ -42,34 +41,27 @@ class App extends Component {
 		this.firebase.auth.onAuthStateChanged((user) => {
 			if (user) {
 				//console.log(`UID: ${user.uid}`);
-				this.setState({
-					UID: user.uid,
-					email: user.email,
-					user: user
-				});
-				this.getUsername();
+				this.getUserFromDatabase(user.uid);
 			}
 		});
 
 	}
 
-	getUsername = () => {
-		// Get user's Username from database
-		var ref = this.firebase.db.ref().child('users').child(this.state.UID)
+	getUserFromDatabase = (userId) => {
+		// Get user from database
+		var ref = this.firebase.db.ref().child('users').child(userId)
 
 		ref.on("value", (snapshot) => {
 			this.setState({
 				user: snapshot.val(),
-				username: snapshot.val().username // probably just need to set user in state
 			});
 		}, function (errorObject) {
-			console.log("The read failed: " + errorObject.code);
+			console.log("The user read failed: " + errorObject.code);
 		});
-
 	}
 
 	handleSignOut = () => {
-		this.setState({ UID: null });
+		this.setState({ user: null });
 		this.firebase.auth.signOut().then(function () {
 			// Sign-out successful.
 			console.log(`signed out`)
@@ -80,7 +72,7 @@ class App extends Component {
 	}
 
 	handleSignIn = () => {
-		// set UID, page to SongWall
+		// page to SongWall
 		this.setState({
 			mainContent: 'songwall'
 		});
@@ -163,6 +155,10 @@ class App extends Component {
 					this.setState({ mainContent: 'songdetails' });
 				}
 			});
+		} else {
+			if (this.state.mainContent !== 'songdetails') {
+				this.setState({ mainContent: 'songdetails' });
+			}
 		}
 	}
 
@@ -175,7 +171,7 @@ class App extends Component {
 						<div id="App-Header">
 							<div className="spacer-240w" />
 							{(() => {
-								if (this.state.UID) {
+								if (this.state.user) {
 									return (
 										<TopBarPlayer song={this.state.currentSong} />
 									);
@@ -188,7 +184,7 @@ class App extends Component {
 									<img src={cornerLogo} className="Blinq-logo" alt="Blinq logo" />
 								</button>
 								{(() => {
-									if (this.state.UID) {
+									if (this.state.user) {
 										return (
 											<div id="Main-Left-Menu">
 												<div id="Header-Btns">
@@ -214,25 +210,25 @@ class App extends Component {
 							</div>
 							<div id="Main-Content">
 								{(() => {
-									if (this.state.UID) {
+									if (this.state.user) {
 										switch (this.state.mainContent) {
-											case 'songwall':
-												return <SongWall setSong={this.handleSetSong} gotoProfile={this.gotoProfile} gotoSongDetails={this.gotoSongDetails}/>;
+											// case 'songwall': // Just run songwall as default case
+											// 	return <SongWall setSong={this.handleSetSong} gotoProfile={this.gotoProfile} gotoSongDetails={this.gotoSongDetails}/>;
 											case 'studio':
-												return <Studio UID={this.state.UID} goto={this.setMainContent} playSong={this.handleSetSong} />;
+												return <Studio user={this.state.user} goto={this.setMainContent} playSong={this.handleSetSong} />;
 											case 'postsong':
-												return <PostSong UID={this.state.UID} username={this.state.username} goto={this.setMainContent} />;
+												return <PostSong user={this.state.user} goto={this.setMainContent} />;
 											case 'record':
 												return <RecordSong user={this.state.user} goto={this.setMainContent} />;
 											case 'editprofile':
 												return <EditProfile user={this.state.user} gotoProfile={this.gotoProfile} goto={this.setMainContent} />;
 											case 'changepw':
-												return <ChangePassword email={this.state.email} />;
+												return <ChangePassword email={this.state.user.email} goto={this.setMainContent} />;
 											case 'profile':
 												return <Profile profileId={this.state.viewProfileId} setSong={this.handleSetSong} gotoSongDetails={this.gotoSongDetails}/>;
 											case 'songdetails':
-												return <SongDetails song={this.state.viewSong} />;
-											default:
+												return <SongDetails song={this.state.viewSong} setSong={this.handleSetSong} />;
+											default: // 'songwall'
 												return <SongWall setSong={this.handleSetSong} gotoProfile={this.gotoProfile} gotoSongDetails={this.gotoSongDetails} />;
 										}
 									} else {

@@ -1,4 +1,5 @@
 /* App's static wrapper */
+
 .App {
   text-align: center;
 }
@@ -56,7 +57,6 @@
 #Home-Div:hover {
   background-color: #e27522;
 }
-
 
 #App-Body-Content {
   display: flex;
@@ -231,3 +231,13 @@
 #goto-signup-button {}
 
 #goto-signin-button {}
+
+/* Reset Password */
+
+#Reset-Password-Div {
+  background-color: rgb(192, 33, 41);
+  margin: 4px;
+  padding: 16px;
+  display: flex;
+  flex-direction: column;
+}

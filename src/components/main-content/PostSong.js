@@ -12,7 +12,8 @@ class PostSong extends Component {
             songName: '',
             artistName: '',
             songInfo: '',
-            showForm: true
+            showForm: true,
+            user: this.props.user
         };
 
         this.firebase = new Firebase()
@@ -43,10 +44,10 @@ class PostSong extends Component {
         this.setState({ songInfo: '' });
 
         // Send to Firebase
-        this.postToFirebase(this.props.UID, this.props.username, this.state.songName, this.state.artistName, this.state.songInfo)
+        this.postToFirebase(this.state.songName, this.state.artistName, this.state.songInfo)
     }
 
-    async postToFirebase(uid, username, songname, artist, info) {
+    async postToFirebase(songname, artist, info) {
         let date = new Date()
         let timestamp = date.getTime()
 
@@ -59,7 +60,7 @@ class PostSong extends Component {
         const duration = await getBlobDuration(file)
 
         const metadata = { contentType: file.type };
-        const storageTask = storageRef.child(this.props.UID).child(newPostKey).child(songname + ".mp3").put(file, metadata);
+        const storageTask = storageRef.child(this.props.user.uid).child(newPostKey).child(songname + ".mp3").put(file, metadata);
         let songData;
         storageTask
             .then(snapshot => snapshot.ref.getDownloadURL())
@@ -74,8 +75,8 @@ class PostSong extends Component {
                     info: info,
                     recorded: timestamp,
                     uploaded: timestamp,
-                    uploader: uid,
-                    uploaderName: username,
+                    uploader: this.props.user.uid,
+                    uploaderName: this.props.user.username,
                     published: null,
                     duration: Math.floor(duration)
                 };
@@ -83,7 +84,7 @@ class PostSong extends Component {
 
                 // Write the new song's data the user's song list.
                 var updates = {};
-                updates['/user-songs/' + uid + '/' + newPostKey] = songData;
+                updates['/user-songs/' + this.props.user.uid + '/' + newPostKey] = songData;
 
                 return this.firebase.db.ref().update(updates);
             }).then(() => {

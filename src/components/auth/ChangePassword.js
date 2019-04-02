@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import '../../styles/main-content.css';
+import '../../styles/App.css';
 import Firebase from '../../config/firebaseConfig.js'
 
 
@@ -15,6 +15,9 @@ class ChangePassword extends Component {
 
     }
 
+    gotoEditProfile = () => {
+        this.props.goto('editprofile');
+    }
 
     handleResetPassword = () => {
         this.firebase.auth.sendPasswordResetEmail(this.state.email)
@@ -25,11 +28,10 @@ class ChangePassword extends Component {
     render() {
 
         return (
-            <div>
+            <div id="Reset-Password-Div">
                 <h3>Reset Password?</h3>
-                <div>
-                    <button onClick={this.handleResetPassword} > Confirm Reset Password </button>
-                </div>
+                <button onClick={this.handleResetPassword} > Confirm Reset Password </button>
+                <button onClick={this.gotoEditProfile} > Nevermind </button>
             </div>
         );
     }
