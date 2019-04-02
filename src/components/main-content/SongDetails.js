@@ -15,6 +15,11 @@ class SongDetails extends Component {
         this.firebase = new Firebase()
     }
 
+    handleUploaderClick = () => {
+        console.log("SongDetails uploader: " + this.props.song.uploader)
+        this.props.gotoProfile(this.props.song.uploader);
+    }
+
     handlePlay = () => {
         // pass song to SongWall, which will pass on to App
         console.log("SongDetails play: " + this.props.song.songName)
@@ -37,6 +42,9 @@ class SongDetails extends Component {
                         {this.formatMinutesSeconds(this.props.song.duration)} &#9654;
                     </div>
                 </button>
+                <div>
+                    <button className="songList-Uploader-Btn" onClick={this.handleUploaderClick}>{this.props.song.uploaderName}</button>
+                </div>
                 <div>
                     {this.props.song.artist}
                 </div>

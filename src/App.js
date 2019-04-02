@@ -227,7 +227,7 @@ class App extends Component {
 											case 'profile':
 												return <Profile profileId={this.state.viewProfileId} setSong={this.handleSetSong} gotoSongDetails={this.gotoSongDetails}/>;
 											case 'songdetails':
-												return <SongDetails song={this.state.viewSong} setSong={this.handleSetSong} />;
+												return <SongDetails song={this.state.viewSong} setSong={this.handleSetSong} gotoProfile={this.gotoProfile} />;
 											default: // 'songwall'
 												return <SongWall setSong={this.handleSetSong} gotoProfile={this.gotoProfile} gotoSongDetails={this.gotoSongDetails} />;
 										}
