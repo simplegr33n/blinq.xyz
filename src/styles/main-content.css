@@ -104,7 +104,7 @@
 
 .songArt {
     border-radius: 15px;
-    max-height: 120px;
+    max-height: 40px;
 }
 
 .Song-Item-Play-Btn {
@@ -295,6 +295,20 @@
     height: calc(100vh - 100px);
     flex-direction: column;
     overflow-y: scroll;
+}
+
+.profileSongName {
+    border: none;
+    margin: 0;
+    font-weight: bold;
+    font-size: 0.65em;
+}
+
+.profileItemSongDate {
+    border: none;
+    font-weight: bold;
+    font-size: 0.65em;
+    font-style: italic;
 }
 
 /* Song Details  */

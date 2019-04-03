@@ -36,15 +36,15 @@ class ProfileSongItem extends Component {
 
                 <div className="songListItemRight">
                     <div className="songHeader">
-                        <div>
-                            <div className="songName">
-                                <button onClick={this.handleSongNameClick}>{this.props.song.songName}</button>
-                            </div>
+                 
+                       
+                                <button className="profileSongName" onClick={this.handleSongNameClick}>{this.props.song.songName}</button>
+                     
                             <div className="artistName">
                                 <i>by</i> {" " + this.props.song.artist}
                             </div>
-                        </div>
-                        <div className="recordingDate">
+                 
+                        <div className="profileItemSongDate">
                             {new Intl.DateTimeFormat('en-GB', {
                                 year: 'numeric',
                                 month: 'long',
