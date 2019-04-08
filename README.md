@@ -1,4 +1,4 @@
-﻿# blinq
+# blinq
 
 ## Available Scripts
 
@@ -13,7 +13,6 @@ The page will reload if you make edits.<br>
 You will also see any lint errors in the console.
 
 ### `npm run deploy`
-**Note: not yet configured**
-
 Creates an optimized build and pushes to 'gh-pages' branch for deployment.
 
+<img src="https://github.com/simplegr33n/blinq.xyz/blob/master/dev_assets/screen-20190408.png?raw=true" width="600">
