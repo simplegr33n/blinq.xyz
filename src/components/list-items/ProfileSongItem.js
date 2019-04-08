@@ -28,22 +28,22 @@ class ProfileSongItem extends Component {
         return (
             <div className="SongListItem">
                 <div>
-                    <button className="Song-Item-Play-Btn" onClick={this.handlePlay}>
-                        <img src={TESTSongArt} className="songArt" alt="Song Art" />
-                        {this.props.song.songLength} &#9654;
+                    <button className="profileItemPlayBtn" onClick={this.handlePlay}>
+                        <img src={TESTSongArt} className="profileSongArt" alt="Song Art" />
+                        <div className="profilePlayIcon">&#9654;</div> 
                     </button>
                 </div>
 
                 <div className="songListItemRight">
-                    <div className="songHeader">
-                 
-                       
-                                <button className="profileSongName" onClick={this.handleSongNameClick}>{this.props.song.songName}</button>
-                     
-                            <div className="artistName">
-                                <i>by</i> {" " + this.props.song.artist}
-                            </div>
-                 
+                    <div className="profileSongHeader">
+
+
+                        <button className="profileSongName" onClick={this.handleSongNameClick}>{this.props.song.songName}</button>
+
+                        <div className="artistName">
+                            <i>by</i> {" " + this.props.song.artist}
+                        </div>
+
                         <div className="profileItemSongDate">
                             {new Intl.DateTimeFormat('en-GB', {
                                 year: 'numeric',

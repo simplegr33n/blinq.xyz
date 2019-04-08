@@ -75,6 +75,7 @@
 
 .artistName {
     font-size: .65em;
+    flex-grow: 1;
     font-weight: bold;
 }
 
@@ -103,7 +104,7 @@
 }
 
 .songArt {
-    border-radius: 15px;
+    border-radius: 5px;
     max-height: 40px;
 }
 
@@ -120,7 +121,9 @@
     padding: 4px;
 }
 
-.songList-Uploader-Btn {}
+.songList-Uploader-Btn {
+
+}
 
 /* PublishSongWall */
 
@@ -295,6 +298,32 @@
     height: calc(100vh - 100px);
     flex-direction: column;
     overflow-y: scroll;
+}
+
+.profileSongHeader {
+    display: flex;
+    flex-direction: row;
+    align-items: space-evenly;
+    justify-content: space-evenly;
+    flex-wrap: wrap;
+}
+
+.profileItemPlayBtn {
+    position: relative;
+    padding: 0;
+}
+
+.profileSongArt {
+    border-radius: 3px;
+    max-height: 46px;
+}
+
+.profilePlayIcon {
+    position: absolute;
+    color: greenyellow;
+    top: 10px;
+    font-size: 22px;
+    left: 10px;
 }
 
 .profileSongName {
